@@ -1,47 +1,43 @@
 # clean-code-javascript-ua
 
-## Table of Contents
+## Зміст
 
-1. [Introduction](#introduction)
-2. [Variables](#variables)
-3. [Functions](#functions)
-4. [Objects and Data Structures](#objects-and-data-structures)
-5. [Classes](#classes)
+1. [Вступ](#introduction)
+2. [Змінні](#variables)
+3. [Функції](#functions)
+4. [Об'єкти та структури даних](#objects-and-data-structures)
+5. [Класи](#classes)
 6. [SOLID](#solid)
-7. [Testing](#testing)
-8. [Concurrency](#concurrency)
-9. [Error Handling](#error-handling)
-10. [Formatting](#formatting)
-11. [Comments](#comments)
-12. [Translation](#translation)
+7. [Тестування](#testing)
+8. [Асинхронність](#concurrency)
+9. [Обробка помилок](#error-handling)
+10. [Форматування](#formatting)
+11. [Коментарі](#comments)
+12. [Переклад](#translation)
 
-## Introduction
+## Вступ
 
-![Humorous image of software quality estimation as a count of how many expletives
-you shout when reading code](https://www.osnews.com/images/comics/wtfm.jpg)
+![Жартівливе зображення оцінки якості програмного забезпечення як кількості разів, що ви лаялись,
+читаючи код](https://www.osnews.com/images/comics/wtfm.jpg)
 
-Software engineering principles, from Robert C. Martin's book
-[_Clean Code_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
-adapted for JavaScript. This is not a style guide. It's a guide to producing
-[readable, reusable, and refactorable](https://github.com/ryanmcdermott/3rs-of-software-architecture) software in JavaScript.
+Принципи програмної інженерії з книги Роберта С. Мартіна 
+[_Clean Code_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882), адаптовані для JavaScript. Це не гайд зі стилю кода. Це посібник для розробки програмного забезпечення
+на JavaScript, котре 
+[легко читати, перевикористовувати і рефакторувати](https://github.com/ryanmcdermott/3rs-of-software-architecture).
 
-Not every principle herein has to be strictly followed, and even fewer will be
-universally agreed upon. These are guidelines and nothing more, but they are
-ones codified over many years of collective experience by the authors of
-_Clean Code_.
+Не кожен згаданий тут принцип обов'язковий до дотримання, і лише деякі з них не
+викличуть розбіжностей. Це поради і нічого більше, але їх документували
+на основі багаторічного колективного досвіду авторів _Clean Code_.
 
-Our craft of software engineering is just a bit over 50 years old, and we are
-still learning a lot. When software architecture is as old as architecture
-itself, maybe then we will have harder rules to follow. For now, let these
-guidelines serve as a touchstone by which to assess the quality of the
-JavaScript code that you and your team produce.
+Нашому ремеслу програмної інженерії трохи більше 50 років, і ми все ще багато чого пізнаємо.
+Коли архітектура програмного забезпечення буде такою ж старою, як і сама архітектура,
+можливо тоді в нас будуть більш жорсткі правила до дотримання. А зараз нехай ці поради слугують
+критерієм для оцінки JavaScript коду, який створюєте ви і ваша команда.
 
-One more thing: knowing these won't immediately make you a better software
-developer, and working with them for many years doesn't mean you won't make
-mistakes. Every piece of code starts as a first draft, like wet clay getting
-shaped into its final form. Finally, we chisel away the imperfections when
-we review it with our peers. Don't beat yourself up for first drafts that need
-improvement. Beat up the code instead!
+Ще одна річ: знання цих принципів не зробить вас кращим розробником миттєво, 
+і багаторічна праця з ними не значить, що ви не будете робити помилок.
+Кожен фрагмент коду починається з чорнового варіанту, подібно мокрій глині, що набуває своєї кінцевої
+форми. По завершенню, ми винищуємо недоліки, коли оглядаємо код з колегами. Не коріть себе за перші чорнові версії коду, що потребують поліпшення. Поліпшуйте код замість цього!
 
 ## **Variables**
 
