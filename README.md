@@ -2,7 +2,7 @@
 
 ## Зміст
 
-1. [Вступ](#introduction)
+1. [Вступ](#Вступ)
 2. [Змінні](#variables)
 3. [Функції](#functions)
 4. [Об'єкти та структури даних](#objects-and-data-structures)
