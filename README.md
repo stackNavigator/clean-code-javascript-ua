@@ -5,7 +5,7 @@
 1. [Вступ](#Вступ)
 2. [Змінні](#Змінні)
 3. [Функції](#Функції)
-4. [Об'єкти та структури даних](#objects-and-data-structures)
+4. [Об'єкти та структури даних](#Об'єкти-та-структури-даних)
 5. [Класи](#classes)
 6. [SOLID](#solid)
 7. [Тестування](#testing)
@@ -37,7 +37,7 @@
 Ще одна річ: знання цих принципів не зробить вас кращим розробником миттєво, 
 і багаторічна праця з ними не значить, що ви не будете робити помилок.
 Кожен фрагмент коду починається з чорнового варіанту, подібно мокрій глині, що набуває своєї кінцевої
-форми. По завершенню, ми винищуємо недоліки, коли оглядаємо код з колегами. Не коріть себе за перші чорнові версії коду, що потребують поліпшення. Поліпшуйте код замість цього!
+форми. По завершенню, ми винищуємо недоліки, коли рецензуємо код з колегами. Не коріть себе за перші чорнові версії коду, що потребують поліпшення. Поліпшуйте код замість цього!
 
 ## **Змінні**
 
@@ -629,19 +629,12 @@ const addItemToCart = (cart, item) => {
 
 **[⬆ повернутися до змісту](#Зміст)**
 
-### Don't write to global functions
+### Не розширюйте глобальні функції
 
-Polluting globals is a bad practice in JavaScript because you could clash with another
-library and the user of your API would be none-the-wiser until they get an
-exception in production. Let's think about an example: what if you wanted to
-extend JavaScript's native Array method to have a `diff` method that could
-show the difference between two arrays? You could write your new function
-to the `Array.prototype`, but it could clash with another library that tried
-to do the same thing. What if that other library was just using `diff` to find
-the difference between the first and last elements of an array? This is why it
-would be much better to just use ES2015/ES6 classes and simply extend the `Array` global.
+Забруднення глобальних змінних є поганою практикою в JavaScript, оскільки у вас може виникнути конфлікт з іншою бібліотекою, і користувач вашого API не буде цього знати, доки не отримає виняток у продакшені.  Давайте подумаємо про приклад: що, якби ви хотіли розширити нативний метод масиву JavaScript так, щоб `Array` мав метод `diff`, який міг би показати різницю між двома масивами? Ви можете записати свою нову функцію в `Array.prototype`, але вона може вступити в конфлікт з іншою бібліотекою, яка намагається
+робити те саме. А що як та інша бібліотека просто використовувала `diff` для пошуку різниці між першим та останнім елементами масиву? Ось чому було б набагато краще просто використовувати ES2015 / ES6 класи і просто розширити глобальний об'єкт `Array`.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 Array.prototype.diff = function diff(comparisonArray) {
@@ -650,7 +643,7 @@ Array.prototype.diff = function diff(comparisonArray) {
 };
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 class SuperArray extends Array {
@@ -661,15 +654,13 @@ class SuperArray extends Array {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Favor functional programming over imperative programming
+### Віддавайте перевагу функціональному програмуванню над імперативним програмуванням
 
-JavaScript isn't a functional language in the way that Haskell is, but it has
-a functional flavor to it. Functional languages can be cleaner and easier to test.
-Favor this style of programming when you can.
+JavaScript не є функціональною мовою у сенсі Haskell, але має функціональний присмак. Функціональні мови можуть бути більш чистими та легшими для тестування. Віддавайте перевагу цьому стилю програмування, коли можете.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 const programmerOutput = [
@@ -698,7 +689,7 @@ for (let i = 0; i < programmerOutput.length; i++) {
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 const programmerOutput = [
@@ -726,11 +717,11 @@ const totalOutput = programmerOutput.reduce(
 );
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Encapsulate conditionals
+### Інкапсулюйте умовні вирази
 
-**Bad:**
+**Погано:**
 
 ```javascript
 if (fsm.state === "fetching" && isEmpty(listNode)) {
@@ -738,7 +729,7 @@ if (fsm.state === "fetching" && isEmpty(listNode)) {
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 function shouldShowSpinner(fsm, listNode) {
@@ -750,11 +741,11 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Avoid negative conditionals
+### Уникайте негативних умовних виразів
 
-**Bad:**
+**Погано:**
 
 ```javascript
 function isDOMNodeNotPresent(node) {
@@ -766,7 +757,7 @@ if (!isDOMNodeNotPresent(node)) {
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 function isDOMNodePresent(node) {
@@ -778,20 +769,13 @@ if (isDOMNodePresent(node)) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Avoid conditionals
+### Уникайте умовних виразів
 
-This seems like an impossible task. Upon first hearing this, most people say,
-"how am I supposed to do anything without an `if` statement?" The answer is that
-you can use polymorphism to achieve the same task in many cases. The second
-question is usually, "well that's great but why would I want to do that?" The
-answer is a previous clean code concept we learned: a function should only do
-one thing. When you have classes and functions that have `if` statements, you
-are telling your user that your function does more than one thing. Remember,
-just do one thing.
+Це здається неможливим завданням. Більшість людей, почувши це, говорять: "як я можу зробити хоч щось без `if` виразу?" Відповідь полягає в тому, що ви можете використовувати поліморфізм для досягнення однієї і тієї ж мети у багатьох випадках. Друге питання, як правило, "ну це чудово, але чому я хотів би це зробити?" Відповідь - це попередня концепція чистого коду, яку ми дізналися: функція повинна виконувати лише одну дію. Коли у вас є класи та функції, у яких наявні `if` вирази, ви говорите вашому користувачеві, що ваша функція виконує більше однієї дії. Пам'ятайте, виконуйте тільки одну дію.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 class Airplane {
@@ -809,7 +793,7 @@ class Airplane {
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 class Airplane {
@@ -838,16 +822,13 @@ class Cessna extends Airplane {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Avoid type-checking (part 1)
+### Уникайте перевірки типів (частина 1)
 
-JavaScript is untyped, which means your functions can take any type of argument.
-Sometimes you are bitten by this freedom and it becomes tempting to do
-type-checking in your functions. There are many ways to avoid having to do this.
-The first thing to consider is consistent APIs.
+JavaScript є слабо типізованою мовою - це означає, що ваші функції можуть приймати аргументи будь-якого типу. Іноді вам незручна ця свобода, і здається спокусливим зробити перевірку типів у ваших функціях. Є багато способів уникнути такої необхідності. Перше, що слід врахувати, - це послідовні API.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 function travelToTexas(vehicle) {
@@ -859,7 +840,7 @@ function travelToTexas(vehicle) {
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 function travelToTexas(vehicle) {
@@ -867,21 +848,14 @@ function travelToTexas(vehicle) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Avoid type-checking (part 2)
+### Уникайте перевірки типів (частина 2)
 
-If you are working with basic primitive values like strings and integers,
-and you can't use polymorphism but you still feel the need to type-check,
-you should consider using TypeScript. It is an excellent alternative to normal
-JavaScript, as it provides you with static typing on top of standard JavaScript
-syntax. The problem with manually type-checking normal JavaScript is that
-doing it well requires so much extra verbiage that the faux "type-safety" you get
-doesn't make up for the lost readability. Keep your JavaScript clean, write
-good tests, and have good code reviews. Otherwise, do all of that but with
-TypeScript (which, like I said, is a great alternative!).
+Якщо ви працюєте з базовими примітивними значеннями, такими як рядки та цілі числа,
+і ви не можете використовувати поліморфізм, але все ще відчуваєте потребу перевірити тип, вам слід розглянути можливість використання TypeScript. Це відмінна альтернатива звичайному JavaScript, оскільки вона надає вам статичну типізацію над стандартним JavaScript синтаксисом. Проблема з ручною перевіркою типовів у звичайному JavaScript полягає в тому, що для такої перевірки потрібно стільки додаткового коду, що отримана вами штучна "безпека типів" не компенсує втрату читабельності. Слідкуйте за чистотою вашого JavaScript, пишіть хороші тести та проводьте якісне рецензування коду. В іншому випадку перевіряйте типи, але з TypeScript (який, як я вже сказав, є чудовою альтернативою!).
 
-**Bad:**
+**Погано:**
 
 ```javascript
 function combine(val1, val2) {
@@ -896,7 +870,7 @@ function combine(val1, val2) {
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 function combine(val1, val2) {
@@ -904,27 +878,23 @@ function combine(val1, val2) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Don't over-optimize
+### Не оптимізуйте надмірно
 
-Modern browsers do a lot of optimization under-the-hood at runtime. A lot of
-times, if you are optimizing then you are just wasting your time. [There are good
-resources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
-for seeing where optimization is lacking. Target those in the meantime, until
-they are fixed if they can be.
+Сучасні браузери роблять багато оптимізації під капотом. Здебільшого, якщо ви оптимізуєте, то ви просто витрачаєте свій час. [Є хороші ресурси](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers), що показують, де оптимізації не вистачає. Використовуйте їх до тих пір, доки ситуація не покращиться.
 
-**Bad:**
+**Погано:**
 
 ```javascript
-// On old browsers, each iteration with uncached `list.length` would be costly
-// because of `list.length` recomputation. In modern browsers, this is optimized.
+// У старих браузерах кожна ітерація `list.length` без кешування буде дорогою
+// через перерахунок `list.length`. У сучасних браузерах це оптимізовано.
 for (let i = 0, len = list.length; i < len; i++) {
   // ...
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 for (let i = 0; i < list.length; i++) {
@@ -932,15 +902,13 @@ for (let i = 0; i < list.length; i++) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Remove dead code
+### Видаляйте мертвий код
 
-Dead code is just as bad as duplicate code. There's no reason to keep it in
-your codebase. If it's not being called, get rid of it! It will still be safe
-in your version history if you still need it.
+Мертвий код так само поганий, як і повторюваний. Немає жодних підстав тримати його у вашій кодовій базі. Якщо його не викликають, позбудьтесь його! Він все ще буде у безпеці в історії версій, якщо вам знадобиться.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 function oldRequestModule(url) {
@@ -955,7 +923,7 @@ const req = newRequestModule;
 inventoryTracker("apples", req, "www.inventory-awesome.io");
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 function newRequestModule(url) {
@@ -966,9 +934,9 @@ const req = newRequestModule;
 inventoryTracker("apples", req, "www.inventory-awesome.io");
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-## **Objects and Data Structures**
+## **Об'єкти та структури даних**
 
 ### Use getters and setters
 
