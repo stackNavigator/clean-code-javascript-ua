@@ -3,7 +3,7 @@
 ## Зміст
 
 1. [Вступ](#Вступ)
-2. [Змінні](#variables)
+2. [Змінні](#Змінні)
 3. [Функції](#functions)
 4. [Об'єкти та структури даних](#objects-and-data-structures)
 5. [Класи](#classes)
@@ -39,27 +39,27 @@
 Кожен фрагмент коду починається з чорнового варіанту, подібно мокрій глині, що набуває своєї кінцевої
 форми. По завершенню, ми винищуємо недоліки, коли оглядаємо код з колегами. Не коріть себе за перші чорнові версії коду, що потребують поліпшення. Поліпшуйте код замість цього!
 
-## **Variables**
+## **Змінні**
 
-### Use meaningful and pronounceable variable names
+### Використовуйте виразні та вимовні імена змінних
 
-**Bad:**
+**Погано:**
 
 ```javascript
 const yyyymmdstr = moment().format("YYYY/MM/DD");
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 const currentDate = moment().format("YYYY/MM/DD");
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Use the same vocabulary for the same type of variable
+### Використовуйте однакову лексику для однакового типу змінної
 
-**Bad:**
+**Погано:**
 
 ```javascript
 getUserInfo();
@@ -67,41 +67,41 @@ getClientData();
 getCustomerRecord();
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 getUser();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Use searchable names
+### Використовуйте імена, доступні для пошуку
 
-We will read more code than we will ever write. It's important that the code we
-do write is readable and searchable. By _not_ naming variables that end up
-being meaningful for understanding our program, we hurt our readers.
-Make your names searchable. Tools like
-[buddy.js](https://github.com/danielstjules/buddy.js) and
+Ми прочитаємо більше коду, ніж коли-небудь напишемо. Важливо, щоб наш код був легким для читання 
+і пошуку. _Не_ використовуючи імена для змінних, що є важливими для розуміння нашої
+програми, ми шкодимо тим, хто читає наш код.
+Робіть імена доступними для пошуку. Такі засоби, як
+[buddy.js](https://github.com/danielstjules/buddy.js) та
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
-can help identify unnamed constants.
+можуть допомогти у знаходженні безіменних констант.
 
-**Bad:**
+**Погано:**
 
 ```javascript
-// What the heck is 86400000 for?
+// Якого біса означає 86400000?
 setTimeout(blastOff, 86400000);
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
-// Declare them as capitalized named constants.
+// Оголошуйте їх у якості іменованих констант з верхнім регістром.
 const MILLISECONDS_IN_A_DAY = 86_400_000;
 
 setTimeout(blastOff, MILLISECONDS_IN_A_DAY);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
 ### Use explanatory variables
 
