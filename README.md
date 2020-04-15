@@ -55,7 +55,7 @@ const yyyymmdstr = moment().format("YYYY/MM/DD");
 const currentDate = moment().format("YYYY/MM/DD");
 ```
 
-**[⬆ повернутися до змісту](https://github.com/mindfr1k/clean-code-javascript-ua#Зміст)**
+**[&#x2191; повернутися до змісту](#Зміст)**
 
 ### Використовуйте однакову лексику для однакового типу змінної
 
