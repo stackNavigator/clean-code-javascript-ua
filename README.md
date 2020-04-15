@@ -55,7 +55,7 @@ const yyyymmdstr = moment().format("YYYY/MM/DD");
 const currentDate = moment().format("YYYY/MM/DD");
 ```
 
-**[⬆ повернутися до змісту](https://gihub.com/mindfr1k/clean-code-javascript-ua#Зміст)**
+**[⬆ повернутися до змісту](https://github.com/mindfr1k/clean-code-javascript-ua#Зміст)**
 
 ### Використовуйте однакову лексику для однакового типу змінної
 
@@ -568,7 +568,8 @@ function createTempFile(name) {
 
 ```javascript
 // Глобальна змінна, на яку посилається наступна функція.
-// Якщо б у нас була ще одна функція, що використовує це ім'я, то зараз ця змінна була б масивом і функція могла б зламати змінну.
+// Якщо б у нас була ще одна функція, що використовує це ім'я, то зараз ця змінна була б масивом\
+// і функція могла б зламати змінну.
 let name = "Ryan McDermott";
 
 function splitIntoFirstAndLastName() {
