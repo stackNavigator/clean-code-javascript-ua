@@ -103,9 +103,9 @@ setTimeout(blastOff, MILLISECONDS_IN_A_DAY);
 
 **[⬆ повернутися до змісту](#Зміст)**
 
-### Use explanatory variables
+### Використовуйте наочні змінні
 
-**Bad:**
+**Погано:**
 
 ```javascript
 const address = "One Infinite Loop, Cupertino 95014";
@@ -116,7 +116,7 @@ saveCityZipCode(
 );
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 const address = "One Infinite Loop, Cupertino 95014";
@@ -125,13 +125,13 @@ const [_, city, zipCode] = address.match(cityZipCodeRegex) || [];
 saveCityZipCode(city, zipCode);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Avoid Mental Mapping
+### Уникайте розумового зв'язування
 
-Explicit is better than implicit.
+Явне краще за неявне.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 const locations = ["Austin", "New York", "San Francisco"];
@@ -141,12 +141,12 @@ locations.forEach(l => {
   // ...
   // ...
   // ...
-  // Wait, what is `l` for again?
+  // Почекайте, що там означає `l`?
   dispatch(l);
 });
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 const locations = ["Austin", "New York", "San Francisco"];
@@ -160,14 +160,13 @@ locations.forEach(location => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Don't add unneeded context
+### Не додавайте непотрібний контекст
 
-If your class/object name tells you something, don't repeat that in your
-variable name.
+Якщо ім'я вашого класу/об'єкта щось говорить вам, не повторюйте це у назві змінної.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 const Car = {
@@ -181,7 +180,7 @@ function paintCar(car) {
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 const Car = {
@@ -195,16 +194,15 @@ function paintCar(car) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Use default arguments instead of short circuiting or conditionals
+### Використовуйте аргументи за замовчуванням замість короткого обчислення умови OR
 
-Default arguments are often cleaner than short circuiting. Be aware that if you
-use them, your function will only provide default values for `undefined`
-arguments. Other "falsy" values such as `''`, `""`, `false`, `null`, `0`, and
-`NaN`, will not be replaced by a default value.
+Аргументи за замовчуванням часто є більш чистими, ніж коротке обчислення. Майте на увазі, що при
+використанні аргументів за замовчуванням ваша функція надасть значення за замовчуванням тільки для `undefined` аргументів. Інші "хибні" (falsy) значення, як-то `''`, `""`, `false`, `null`, `0`, і
+`NaN`, не будуть замінені значенням за замовчуванням.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 function createMicrobrewery(name) {
@@ -213,7 +211,7 @@ function createMicrobrewery(name) {
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 function createMicrobrewery(name = "Hipster Brew Co.") {
@@ -221,9 +219,9 @@ function createMicrobrewery(name = "Hipster Brew Co.") {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-## **Functions**
+## **Функції**
 
 ### Function arguments (2 or fewer ideally)
 
