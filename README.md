@@ -1,69 +1,65 @@
 # clean-code-javascript-ua
 
-## Table of Contents
+## Зміст
 
-1. [Introduction](#introduction)
-2. [Variables](#variables)
-3. [Functions](#functions)
-4. [Objects and Data Structures](#objects-and-data-structures)
-5. [Classes](#classes)
-6. [SOLID](#solid)
-7. [Testing](#testing)
-8. [Concurrency](#concurrency)
-9. [Error Handling](#error-handling)
-10. [Formatting](#formatting)
-11. [Comments](#comments)
-12. [Translation](#translation)
+1. [Вступ](#Вступ)
+2. [Змінні](#Змінні)
+3. [Функції](#Функції)
+4. [Об'єкти та структури даних](#Об'єкти-та-структури-даних)
+5. [Класи](#Класи)
+6. [SOLID](#SOLID)
+7. [Тестування](#Тестування)
+8. [Асинхронність](#Асинхронність)
+9. [Обробка помилок](#Обробка-помилок)
+10. [Форматування](#Форматування)
+11. [Коментарі](#Коментарі)
+12. [Переклад](#Переклад)
 
-## Introduction
+## Вступ
 
-![Humorous image of software quality estimation as a count of how many expletives
-you shout when reading code](https://www.osnews.com/images/comics/wtfm.jpg)
+![Жартівливе зображення оцінки якості програмного забезпечення як кількості разів, що ви лаялись,
+читаючи код](https://www.osnews.com/images/comics/wtfm.jpg)
 
-Software engineering principles, from Robert C. Martin's book
-[_Clean Code_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
-adapted for JavaScript. This is not a style guide. It's a guide to producing
-[readable, reusable, and refactorable](https://github.com/ryanmcdermott/3rs-of-software-architecture) software in JavaScript.
+Принципи програмної інженерії з книги Роберта С. Мартіна 
+[_Clean Code_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882), адаптовані для JavaScript. Це не гайд зі стилю кода. Це посібник для розробки програмного забезпечення
+на JavaScript, котре 
+[легко читати, повторно використовувати і рефакторити](https://github.com/ryanmcdermott/3rs-of-software-architecture).
 
-Not every principle herein has to be strictly followed, and even fewer will be
-universally agreed upon. These are guidelines and nothing more, but they are
-ones codified over many years of collective experience by the authors of
-_Clean Code_.
+Не кожен згаданий тут принцип обов'язковий до дотримання, і лише деякі з них не
+викличуть розбіжностей. Це поради і нічого більше, але їх документували
+на основі багаторічного колективного досвіду авторів _Clean Code_.
 
-Our craft of software engineering is just a bit over 50 years old, and we are
-still learning a lot. When software architecture is as old as architecture
-itself, maybe then we will have harder rules to follow. For now, let these
-guidelines serve as a touchstone by which to assess the quality of the
-JavaScript code that you and your team produce.
+Нашому ремеслу програмної інженерії трохи більше 50 років, і ми все ще багато чого пізнаємо.
+Коли архітектура програмного забезпечення буде такою ж старою, як і сама архітектура,
+можливо тоді в нас будуть більш жорсткі правила до дотримання. А зараз нехай ці поради слугують
+критерієм для оцінки JavaScript коду, який створюєте ви і ваша команда.
 
-One more thing: knowing these won't immediately make you a better software
-developer, and working with them for many years doesn't mean you won't make
-mistakes. Every piece of code starts as a first draft, like wet clay getting
-shaped into its final form. Finally, we chisel away the imperfections when
-we review it with our peers. Don't beat yourself up for first drafts that need
-improvement. Beat up the code instead!
+Ще одна річ: знання цих принципів не зробить вас кращим розробником миттєво, 
+і багаторічна праця з ними не значить, що ви не будете робити помилок.
+Кожен фрагмент коду починається з чорнового варіанту, подібно мокрій глині, що набуває своєї кінцевої
+форми. По завершенню, ми винищуємо недоліки, коли рецензуємо код з колегами. Не коріть себе за перші чорнові версії коду, що потребують поліпшення. Поліпшуйте код замість цього!
 
-## **Variables**
+## **Змінні**
 
-### Use meaningful and pronounceable variable names
+### Використовуйте виразні та вимовні імена змінних
 
-**Bad:**
+**Погано:**
 
 ```javascript
 const yyyymmdstr = moment().format("YYYY/MM/DD");
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 const currentDate = moment().format("YYYY/MM/DD");
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Use the same vocabulary for the same type of variable
+### Використовуйте однакову лексику для однакового типу змінної
 
-**Bad:**
+**Погано:**
 
 ```javascript
 getUserInfo();
@@ -71,45 +67,45 @@ getClientData();
 getCustomerRecord();
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 getUser();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Use searchable names
+### Використовуйте імена, доступні для пошуку
 
-We will read more code than we will ever write. It's important that the code we
-do write is readable and searchable. By _not_ naming variables that end up
-being meaningful for understanding our program, we hurt our readers.
-Make your names searchable. Tools like
-[buddy.js](https://github.com/danielstjules/buddy.js) and
+Ми прочитаємо більше коду, ніж коли-небудь напишемо. Важливо, щоб наш код був легким для читання 
+і пошуку. _Не_ використовуючи імена для змінних, що є важливими для розуміння нашої
+програми, ми шкодимо тим, хто читає наш код.
+Робіть імена доступними для пошуку. Такі засоби, як
+[buddy.js](https://github.com/danielstjules/buddy.js) та
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
-can help identify unnamed constants.
+можуть допомогти у знаходженні безіменних констант.
 
-**Bad:**
+**Погано:**
 
 ```javascript
-// What the heck is 86400000 for?
+// Якого біса означає 86400000?
 setTimeout(blastOff, 86400000);
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
-// Declare them as capitalized named constants.
+// Оголошуйте їх у якості іменованих констант з верхнім регістром.
 const MILLISECONDS_IN_A_DAY = 86_400_000;
 
 setTimeout(blastOff, MILLISECONDS_IN_A_DAY);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Use explanatory variables
+### Використовуйте наочні змінні
 
-**Bad:**
+**Погано:**
 
 ```javascript
 const address = "One Infinite Loop, Cupertino 95014";
@@ -120,7 +116,7 @@ saveCityZipCode(
 );
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 const address = "One Infinite Loop, Cupertino 95014";
@@ -129,13 +125,13 @@ const [_, city, zipCode] = address.match(cityZipCodeRegex) || [];
 saveCityZipCode(city, zipCode);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Avoid Mental Mapping
+### Уникайте розумового зв'язування
 
-Explicit is better than implicit.
+Явне краще за неявне.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 const locations = ["Austin", "New York", "San Francisco"];
@@ -145,12 +141,12 @@ locations.forEach(l => {
   // ...
   // ...
   // ...
-  // Wait, what is `l` for again?
+  // Почекайте, що там означає `l`?
   dispatch(l);
 });
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 const locations = ["Austin", "New York", "San Francisco"];
@@ -164,14 +160,13 @@ locations.forEach(location => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Don't add unneeded context
+### Не додавайте непотрібний контекст
 
-If your class/object name tells you something, don't repeat that in your
-variable name.
+Якщо ім'я вашого класу/об'єкта щось говорить вам, не повторюйте це у назві змінної.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 const Car = {
@@ -185,7 +180,7 @@ function paintCar(car) {
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 const Car = {
@@ -199,16 +194,15 @@ function paintCar(car) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Use default arguments instead of short circuiting or conditionals
+### Використовуйте аргументи за замовчуванням замість короткого обчислення умови OR
 
-Default arguments are often cleaner than short circuiting. Be aware that if you
-use them, your function will only provide default values for `undefined`
-arguments. Other "falsy" values such as `''`, `""`, `false`, `null`, `0`, and
-`NaN`, will not be replaced by a default value.
+Аргументи за замовчуванням часто є більш чистими, ніж коротке обчислення. Майте на увазі, що при
+використанні аргументів за замовчуванням ваша функція надасть значення за замовчуванням тільки для `undefined` аргументів. Інші "хибні" (falsy) значення, як-то `''`, `""`, `false`, `null`, `0`, і
+`NaN`, не будуть замінені значенням за замовчуванням.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 function createMicrobrewery(name) {
@@ -217,7 +211,7 @@ function createMicrobrewery(name) {
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 function createMicrobrewery(name = "Hipster Brew Co.") {
@@ -225,41 +219,28 @@ function createMicrobrewery(name = "Hipster Brew Co.") {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-## **Functions**
+## **Функції**
 
-### Function arguments (2 or fewer ideally)
+### Аргументи функції (ідеально 2 або менше)
 
-Limiting the amount of function parameters is incredibly important because it
-makes testing your function easier. Having more than three leads to a
-combinatorial explosion where you have to test tons of different cases with
-each separate argument.
+Обмеження кількості параметрів функції надзвичайно важливо, тому що це робить тестування вашої функції простішим. Наявність більше трьох параметрів призводить до комбінаторного вибуху, коли вам потрібно
+тестувати безліч різноманітних ситуацій з кожним окремим аргументом.
 
-One or two arguments is the ideal case, and three should be avoided if possible.
-Anything more than that should be consolidated. Usually, if you have
-more than two arguments then your function is trying to do too much. In cases
-where it's not, most of the time a higher-level object will suffice as an
-argument.
+Один або два аргументи є ідеальним випадком, трьох аргументів слід уникати по можливості.
+Якщо аргументів більше, їх слід об'єднати. Зазвичай, якщо у вас більше двох аргументів, ваша функція намагається виконувати забагато дій. В тих випадках, коли це не так, майже завжди буде достатньо об'єкта вищого рівня.
 
-Since JavaScript allows you to make objects on the fly, without a lot of class
-boilerplate, you can use an object if you are finding yourself needing a
-lot of arguments.
+Так як JavaScript дозволяє вам створювати об'єкти на льоту, без використання синтаксису класів, ви можете використовувати об'єкт, якщо потребуєте багатьох аргументів.
 
-To make it obvious what properties the function expects, you can use the ES2015/ES6
-destructuring syntax. This has a few advantages:
+Щоб було очевидно, які властивості функція очікує, ви можете використовувати ES2015/ES6 синтаксис деструктуризації. Такий підхід має декілька переваг:
 
-1. When someone looks at the function signature, it's immediately clear what
-   properties are being used.
-2. It can be used to simulate named parameters.
-3. Destructuring also clones the specified primitive values of the argument
-   object passed into the function. This can help prevent side effects. Note:
-   objects and arrays that are destructured from the argument object are NOT
-   cloned.
-4. Linters can warn you about unused properties, which would be impossible
-   without destructuring.
+1. Коли хтось дивиться на сигнатуру функції, одразу зрозуміло, які властивості використовуються.
+2. Деструктуризацію можна використовувати, щоб імітувати іменовані параметри.
+3. Деструктуризація, окрім того, клонує вказані примітивні значення об'єкту аргумента, переданого у функцію. Це може допомогти запобіганню побічним ефектам. Примітка: об'єкти та масиви, які деструктурували з об'єкта аргументу, НЕ клонуються.
+4. Лінтери можуть попередити вас щодо невикористаних властивостей, що було б неможливим без деструктуризації.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 function createMenu(title, body, buttonText, cancellable) {
@@ -270,7 +251,7 @@ createMenu("Foo", "Bar", "Baz", true);
 
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 function createMenu({ title, body, buttonText, cancellable }) {
@@ -285,17 +266,13 @@ createMenu({
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Functions should do one thing
+### Функції повинні виконувати одну дію
 
-This is by far the most important rule in software engineering. When functions
-do more than one thing, they are harder to compose, test, and reason about.
-When you can isolate a function to just one action, it can be refactored
-easily and your code will read much cleaner. If you take nothing else away from
-this guide other than this, you'll be ahead of many developers.
+Це, безумовно, найважливіше правило в програмній інженерії. Коли функції виконують більше одної дії, їх важко поєднувати, тестувати та обґрунтовувати. Коли ви можете обмежити функцію до тільки одної дії, її можна легко рефакторити і ваш код буде набагато чистішим. Навіть якщо ви засвоїте з цього посібника тільки цю пораду, ви будете попереду багатьох розробників.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 function emailClients(clients) {
@@ -308,7 +285,7 @@ function emailClients(clients) {
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 function emailActiveClients(clients) {
@@ -321,11 +298,11 @@ function isActiveClient(client) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Function names should say what they do
+### Імена функцій повинні говорити, що роблять функції
 
-**Bad:**
+**Погано:**
 
 ```javascript
 function addToDate(date, month) {
@@ -334,11 +311,11 @@ function addToDate(date, month) {
 
 const date = new Date();
 
-// It's hard to tell from the function name what is added
+// По імені функції важко сказати, що саме додається
 addToDate(date, 1);
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 function addMonthToDate(month, date) {
@@ -349,15 +326,13 @@ const date = new Date();
 addMonthToDate(1, date);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Functions should only be one level of abstraction
+### Функції мають містити тільки один рівень абстракції
 
-When you have more than one level of abstraction your function is usually
-doing too much. Splitting up functions leads to reusability and easier
-testing.
+Наявність більше одного рівня абстракції зазвичай означає, що ваша функція виконує забагато дій. Розділення функцій призводить до повторного використання та більш легкого тестування.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 function parseBetterJSAlternative(code) {
@@ -375,23 +350,23 @@ function parseBetterJSAlternative(code) {
 
   const ast = [];
   tokens.forEach(token => {
-    // lex...
+    // правило...
   });
 
   ast.forEach(node => {
-    // parse...
+    // парсинг...
   });
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 function parseBetterJSAlternative(code) {
   const tokens = tokenize(code);
   const syntaxTree = parse(tokens);
   syntaxTree.forEach(node => {
-    // parse...
+    // парсинг...
   });
 }
 
@@ -421,32 +396,20 @@ function parse(tokens) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Remove duplicate code
+### Видаляйте повторюваний код
 
-Do your absolute best to avoid duplicate code. Duplicate code is bad because it
-means that there's more than one place to alter something if you need to change
-some logic.
+Робіть все можливе, щоб уникнути повторюваного коду. Повторюваний код поганий тому, що означає наявність більше одного місця для змін у разі, якщо вам потрібно буде змінити деяку логіку.
 
-Imagine if you run a restaurant and you keep track of your inventory: all your
-tomatoes, onions, garlic, spices, etc. If you have multiple lists that
-you keep this on, then all have to be updated when you serve a dish with
-tomatoes in them. If you only have one list, there's only one place to update!
+Уявіть, що ви керуєте рестораном і стежите за своїм інвентарем: помідори, цибуля, часник, спеції тощо. Якщо у вас є кілька списків, у яких ви все зберігаєте, тоді кожен з них потрібно оновлювати, коли ви подаєте страву з помідорами. Якщо у вас є лише один список, є лише одне місце для оновлення!
 
-Oftentimes you have duplicate code because you have two or more slightly
-different things, that share a lot in common, but their differences force you
-to have two or more separate functions that do much of the same things. Removing
-duplicate code means creating an abstraction that can handle this set of
-different things with just one function/module/class.
+Часто у вас є повторюваний код, коли ви маєте дві або більше трохи різних сутностей, які мають багато спільного, але їх відмінності змушують вас мати дві або більше окремих функцій, які виконують багато однакових дій. Видалення повторюваного коду означає створення абстракції, яка може обробляти цю множину
+різних сутностей лише однією функцією/модулем/класом.
 
-Getting the abstraction right is critical, that's why you should follow the
-SOLID principles laid out in the _Classes_ section. Bad abstractions can be
-worse than duplicate code, so be careful! Having said this, if you can make
-a good abstraction, do it! Don't repeat yourself, otherwise you'll find yourself
-updating multiple places anytime you want to change one thing.
+Правильне розуміння абстракції є критично важливим, саме тому ви повинні слідувати принципам SOLID, викладеним в розділі _Класи_. Погані абстракції можуть бути гіршими за повторюваний код, тому будьте обережні! Маючи це на увазі, якщо ви можете зробити гарну абстракцію, зробіть її! Не повторюйте себе, інакше вам доведеться оновлювати декілька місць, коли ви захочете змінити лише одне.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 function showDeveloperList(developers) {
@@ -480,7 +443,7 @@ function showManagerList(managers) {
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 function showEmployeeList(employees) {
@@ -507,11 +470,11 @@ function showEmployeeList(employees) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Set default objects with Object.assign
+### Встановлюйте об'єкти за замовчуванням за допомогою Object.assign
 
-**Bad:**
+**Погано:**
 
 ```javascript
 const menuConfig = {
@@ -532,12 +495,12 @@ function createMenu(config) {
 createMenu(menuConfig);
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 const menuConfig = {
   title: "Order",
-  // User did not include 'body' key
+  // Користувач не додав ключ 'body'
   buttonText: "Send",
   cancellable: true
 };
@@ -553,20 +516,20 @@ function createMenu(config) {
     config
   );
 
-  // config now equals: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
+  // config тепер дорівнює: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
   // ...
 }
 
 createMenu(menuConfig);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Don't use flags as function parameters
+### Не використовуйте флаги в якості параметрів функції
 
-Flags tell your user that this function does more than one thing. Functions should do one thing. Split out your functions if they are following different code paths based on a boolean.
+Флаги повідомляють користувачу, що ця функція виконує більше однієї дії. Функції повинні виконувати лише одну дію. Розділіть функції, якщо вони дотримуються різних кодових шляхів на основі булевої змінної.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 function createFile(name, temp) {
@@ -578,7 +541,7 @@ function createFile(name, temp) {
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 function createFile(name) {
@@ -590,30 +553,23 @@ function createTempFile(name) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Avoid Side Effects (part 1)
+### Уникайте побічних ефектів (частина 1)
 
-A function produces a side effect if it does anything other than take a value in
-and return another value or values. A side effect could be writing to a file,
-modifying some global variable, or accidentally wiring all your money to a
-stranger.
+Функція створює побічний ефект, якщо робить щось інше, окрім приймання вхідного значення і повернення іншого значення або значень. Побічним ефектом може бути запис у файл, зміна якоїсь глобальної змінної або випадкове пересилання всіх ваших грошей незнайомцю.
 
-Now, you do need to have side effects in a program on occasion. Like the previous
-example, you might need to write to a file. What you want to do is to
-centralize where you are doing this. Don't have several functions and classes
-that write to a particular file. Have one service that does it. One and only one.
+Проте, час від часу вам потрібно мати побічні ефекти в програмі. Як у попередньому прикладі, вам може знадобитися запис у файл. Що вам потрібно зробити - це централізувати місце, де ви виконуєте таку логіку. Не створюйте декількох функцій та класів, які роблять запис у певний файл. Майте один сервіс, який це робить. Один і тільки один.
 
-The main point is to avoid common pitfalls like sharing state between objects
-without any structure, using mutable data types that can be written to by anything,
-and not centralizing where your side effects occur. If you can do this, you will
-be happier than the vast majority of other programmers.
+Основна думка тут - це уникання поширених помилок, таких, як розділення стану між об'єктами
+без будь-якої структури, використання змінних типів даних, в які можна записати що завгодно, і відсутність централізування у місцях виникнення побічних ефектів. Якщо ви зможете це зробити, ви будете щасливішими за переважну більшість інших програмістів.
 
-**Bad:**
+**Погано:**
 
 ```javascript
-// Global variable referenced by following function.
-// If we had another function that used this name, now it'd be an array and it could break it.
+// Глобальна змінна, на яку посилається наступна функція.
+// Якщо б у нас була ще одна функція, що використовує це ім'я, то зараз ця змінна була б масивом
+// і функція могла б зламати змінну.
 let name = "Ryan McDermott";
 
 function splitIntoFirstAndLastName() {
@@ -625,7 +581,7 @@ splitIntoFirstAndLastName();
 console.log(name); // ['Ryan', 'McDermott'];
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 function splitIntoFirstAndLastName(name) {
@@ -639,44 +595,23 @@ console.log(name); // 'Ryan McDermott';
 console.log(newName); // ['Ryan', 'McDermott'];
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Avoid Side Effects (part 2)
+### Уникайте побічних ефектів (частина 2)
 
-In JavaScript, primitives are passed by value and objects/arrays are passed by
-reference. In the case of objects and arrays, if your function makes a change
-in a shopping cart array, for example, by adding an item to purchase,
-then any other function that uses that `cart` array will be affected by this
-addition. That may be great, however it can be bad too. Let's imagine a bad
-situation:
+У JavaScript примітиви передаються за значенням, а об'єкти/масиви передаються за посиланням. У випадку об'єктів і масивів, якщо ваша функція вносить зміни у масив кошика для покупок, наприклад, додаючи товар для придбання, тоді це додавання вплине на будь-яку іншу функцію, яка використовує масив `cart`. Це може бути чудово, проте це може бути і погано. Давайте уявимо погану ситуацію:
 
-The user clicks the "Purchase" button which calls a `purchase` function that
-spawns a network request and sends the `cart` array to the server. Because
-of a bad network connection, the `purchase` function has to keep retrying the
-request. Now, what if in the meantime the user accidentally clicks "Add to Cart"
-button on an item they don't actually want before the network request begins?
-If that happens and the network request begins, then that purchase function
-will send the accidentally added item because it has a reference to a shopping
-cart array that the `addItemToCart` function modified by adding an unwanted
-item.
+Користувач натискає кнопку "Придбати", кнопка викликає функцію `purchase`, що створює мережевий запит і надсилає масив `cart` на сервер. Через погане мереже з'єднання, функція `purchase` повинна створювати повторний запит. А якщо тим часом користувач випадково натисне "Додати в кошик" на товарі, який йому не потрібен, до початку мережевого запиту? Якщо це трапляється і мережевий запит починається, то  функція придбання відправить випадково доданий товар, оскільки він має посилання на масив кошика покупок, котрий функція `addItemToCart` модифікувала додаванням небажаного товару.
 
-A great solution would be for the `addItemToCart` to always clone the `cart`,
-edit it, and return the clone. This ensures that no other functions that are
-holding onto a reference of the shopping cart will be affected by any changes.
+Чудовим рішенням для `addItemToCart` було б завжди клонувати `cart`, редагувати його і повертати клон. Це гарантує, що сторонні зміни не вплинуть на жодну функцію, що посилається на кошик для покупок.
 
-Two caveats to mention to this approach:
+Два застереження, які слід згадати при такому підході:
 
-1. There might be cases where you actually want to modify the input object,
-   but when you adopt this programming practice you will find that those cases
-   are pretty rare. Most things can be refactored to have no side effects!
+1. Можуть бути випадки, коли ви дійсно хочете змінити об'єкт на вході, але коли ви застосуєте цю практику  програмування, ви виявите, що ці випадки є досить рідкісними. Більшість речей можна відрефакторити так, щоб уникнути побічних ефектів!
 
-2. Cloning big objects can be very expensive in terms of performance. Luckily,
-   this isn't a big issue in practice because there are
-   [great libraries](https://facebook.github.io/immutable-js/) that allow
-   this kind of programming approach to be fast and not as memory intensive as
-   it would be for you to manually clone objects and arrays.
+2. Клонування великих об'єктів може бути дуже дорогим з точки зору продуктивності. На щастя, це не є великою проблемою на практиці, оскільки є [чудові бібліотеки](https://facebook.github.io/immutable-js/), що дозволяють такому підходу програмування бути швидким і не таким вибагливим до пам'яті, як клонування об’єктів та масивів вручну.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 const addItemToCart = (cart, item) => {
@@ -684,7 +619,7 @@ const addItemToCart = (cart, item) => {
 };
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 const addItemToCart = (cart, item) => {
@@ -692,21 +627,14 @@ const addItemToCart = (cart, item) => {
 };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Don't write to global functions
+### Не розширюйте глобальні функції
 
-Polluting globals is a bad practice in JavaScript because you could clash with another
-library and the user of your API would be none-the-wiser until they get an
-exception in production. Let's think about an example: what if you wanted to
-extend JavaScript's native Array method to have a `diff` method that could
-show the difference between two arrays? You could write your new function
-to the `Array.prototype`, but it could clash with another library that tried
-to do the same thing. What if that other library was just using `diff` to find
-the difference between the first and last elements of an array? This is why it
-would be much better to just use ES2015/ES6 classes and simply extend the `Array` global.
+Забруднення глобальних змінних є поганою практикою в JavaScript, оскільки у вас може виникнути конфлікт з іншою бібліотекою, і користувач вашого API не буде цього знати, доки не отримає виняток у продакшені.  Давайте подумаємо про приклад: що, якби ви хотіли розширити нативний метод масиву JavaScript так, щоб `Array` мав метод `diff`, який міг би показати різницю між двома масивами? Ви можете записати свою нову функцію в `Array.prototype`, але вона може вступити в конфлікт з іншою бібліотекою, яка намагається
+робити те саме. А що як та інша бібліотека просто використовувала `diff` для пошуку різниці між першим та останнім елементами масиву? Ось чому було б набагато краще просто використовувати ES2015 / ES6 класи і просто розширити глобальний об'єкт `Array`.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 Array.prototype.diff = function diff(comparisonArray) {
@@ -715,7 +643,7 @@ Array.prototype.diff = function diff(comparisonArray) {
 };
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 class SuperArray extends Array {
@@ -726,15 +654,13 @@ class SuperArray extends Array {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Favor functional programming over imperative programming
+### Віддавайте перевагу функціональному програмуванню над імперативним програмуванням
 
-JavaScript isn't a functional language in the way that Haskell is, but it has
-a functional flavor to it. Functional languages can be cleaner and easier to test.
-Favor this style of programming when you can.
+JavaScript не є функціональною мовою у сенсі Haskell, але має функціональний присмак. Функціональні мови можуть бути більш чистими та легшими для тестування. Віддавайте перевагу цьому стилю програмування, коли можете.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 const programmerOutput = [
@@ -763,7 +689,7 @@ for (let i = 0; i < programmerOutput.length; i++) {
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 const programmerOutput = [
@@ -791,11 +717,11 @@ const totalOutput = programmerOutput.reduce(
 );
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Encapsulate conditionals
+### Інкапсулюйте умовні вирази
 
-**Bad:**
+**Погано:**
 
 ```javascript
 if (fsm.state === "fetching" && isEmpty(listNode)) {
@@ -803,7 +729,7 @@ if (fsm.state === "fetching" && isEmpty(listNode)) {
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 function shouldShowSpinner(fsm, listNode) {
@@ -815,11 +741,11 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Avoid negative conditionals
+### Уникайте негативних умовних виразів
 
-**Bad:**
+**Погано:**
 
 ```javascript
 function isDOMNodeNotPresent(node) {
@@ -831,7 +757,7 @@ if (!isDOMNodeNotPresent(node)) {
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 function isDOMNodePresent(node) {
@@ -843,20 +769,13 @@ if (isDOMNodePresent(node)) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Avoid conditionals
+### Уникайте умовних виразів
 
-This seems like an impossible task. Upon first hearing this, most people say,
-"how am I supposed to do anything without an `if` statement?" The answer is that
-you can use polymorphism to achieve the same task in many cases. The second
-question is usually, "well that's great but why would I want to do that?" The
-answer is a previous clean code concept we learned: a function should only do
-one thing. When you have classes and functions that have `if` statements, you
-are telling your user that your function does more than one thing. Remember,
-just do one thing.
+Це здається неможливим завданням. Більшість людей, почувши це, говорять: "як я можу зробити хоч щось без `if` виразу?" Відповідь полягає в тому, що ви можете використовувати поліморфізм для досягнення однієї і тієї ж мети у багатьох випадках. Друге питання, як правило: "ну це чудово, але чому я хотів би це зробити?" Відповідь - це попередня концепція чистого коду, яку ми дізналися: функція повинна виконувати лише одну дію. Коли у вас є класи та функції, у яких наявні `if` вирази, ви говорите вашому користувачеві, що ваша функція виконує більше однієї дії. Пам'ятайте, виконуйте тільки одну дію.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 class Airplane {
@@ -874,7 +793,7 @@ class Airplane {
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 class Airplane {
@@ -903,16 +822,13 @@ class Cessna extends Airplane {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Avoid type-checking (part 1)
+### Уникайте перевірки типів (частина 1)
 
-JavaScript is untyped, which means your functions can take any type of argument.
-Sometimes you are bitten by this freedom and it becomes tempting to do
-type-checking in your functions. There are many ways to avoid having to do this.
-The first thing to consider is consistent APIs.
+JavaScript є слабо типізованою мовою - це означає, що ваші функції можуть приймати аргументи будь-якого типу. Іноді вам незручна ця свобода, і здається спокусливим зробити перевірку типів у ваших функціях. Є багато способів уникнути такої необхідності. Перше, що слід врахувати, - це послідовні API.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 function travelToTexas(vehicle) {
@@ -924,7 +840,7 @@ function travelToTexas(vehicle) {
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 function travelToTexas(vehicle) {
@@ -932,21 +848,14 @@ function travelToTexas(vehicle) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Avoid type-checking (part 2)
+### Уникайте перевірки типів (частина 2)
 
-If you are working with basic primitive values like strings and integers,
-and you can't use polymorphism but you still feel the need to type-check,
-you should consider using TypeScript. It is an excellent alternative to normal
-JavaScript, as it provides you with static typing on top of standard JavaScript
-syntax. The problem with manually type-checking normal JavaScript is that
-doing it well requires so much extra verbiage that the faux "type-safety" you get
-doesn't make up for the lost readability. Keep your JavaScript clean, write
-good tests, and have good code reviews. Otherwise, do all of that but with
-TypeScript (which, like I said, is a great alternative!).
+Якщо ви працюєте з базовими примітивними значеннями, такими як рядки та цілі числа,
+і ви не можете використовувати поліморфізм, але все ще відчуваєте потребу перевірити тип, вам слід розглянути можливість використання TypeScript. Це відмінна альтернатива звичайному JavaScript, оскільки вона надає вам статичну типізацію над стандартним JavaScript синтаксисом. Проблема з ручною перевіркою типовів у звичайному JavaScript полягає в тому, що для такої перевірки потрібно стільки додаткового коду, що отримана вами штучна "безпека типів" не компенсує втрату читабельності. Слідкуйте за чистотою вашого JavaScript, пишіть хороші тести та проводьте якісне рецензування коду. В іншому випадку перевіряйте типи, але з TypeScript (який, як я вже сказав, є чудовою альтернативою!).
 
-**Bad:**
+**Погано:**
 
 ```javascript
 function combine(val1, val2) {
@@ -961,7 +870,7 @@ function combine(val1, val2) {
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 function combine(val1, val2) {
@@ -969,27 +878,23 @@ function combine(val1, val2) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Don't over-optimize
+### Не оптимізуйте надмірно
 
-Modern browsers do a lot of optimization under-the-hood at runtime. A lot of
-times, if you are optimizing then you are just wasting your time. [There are good
-resources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
-for seeing where optimization is lacking. Target those in the meantime, until
-they are fixed if they can be.
+Сучасні браузери роблять багато оптимізації під капотом. Здебільшого, якщо ви оптимізуєте, то ви просто витрачаєте свій час. [Є хороші ресурси](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers), що показують, де оптимізації не вистачає. Використовуйте їх до тих пір, доки ситуація не покращиться.
 
-**Bad:**
+**Погано:**
 
 ```javascript
-// On old browsers, each iteration with uncached `list.length` would be costly
-// because of `list.length` recomputation. In modern browsers, this is optimized.
+// У старих браузерах кожна ітерація `list.length` без кешування буде дорогою
+// через перерахунок `list.length`. У сучасних браузерах це оптимізовано.
 for (let i = 0, len = list.length; i < len; i++) {
   // ...
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 for (let i = 0; i < list.length; i++) {
@@ -997,15 +902,13 @@ for (let i = 0; i < list.length; i++) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Remove dead code
+### Видаляйте мертвий код
 
-Dead code is just as bad as duplicate code. There's no reason to keep it in
-your codebase. If it's not being called, get rid of it! It will still be safe
-in your version history if you still need it.
+Мертвий код так само поганий, як і повторюваний. Немає жодних підстав тримати його у вашій кодовій базі. Якщо його не викликають, позбудьтесь його! Він все ще буде у безпеці в історії версій, якщо вам знадобиться.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 function oldRequestModule(url) {
@@ -1020,7 +923,7 @@ const req = newRequestModule;
 inventoryTracker("apples", req, "www.inventory-awesome.io");
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 function newRequestModule(url) {
@@ -1031,25 +934,21 @@ const req = newRequestModule;
 inventoryTracker("apples", req, "www.inventory-awesome.io");
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-## **Objects and Data Structures**
+## **Об'єкти та структури даних**
 
-### Use getters and setters
+### Використовутйе геттери та сеттери
 
-Using getters and setters to access data on objects could be better than simply
-looking for a property on an object. "Why?" you might ask. Well, here's an
-unorganized list of reasons why:
+Використання геттерів та сеттерів для доступу до даних об'єктів може бути кращим за просте отримання властивості об'єкта. "Чому?" - ви можете запитати. Ось перелік причин:
 
-- When you want to do more beyond getting an object property, you don't have
-  to look up and change every accessor in your codebase.
-- Makes adding validation simple when doing a `set`.
-- Encapsulates the internal representation.
-- Easy to add logging and error handling when getting and setting.
-- You can lazy load your object's properties, let's say getting it from a
-  server.
+- Коли ви хочете зробити більше, ніж отримати властивість об’єкта, вам не потрібно шукати та змінювати кожне місце доступу до властивості об'єкта.
+- Робить валідацію простою при роботі з `set`.
+- Інкапсулює внутрішнє представлення.
+- Легко додавати логування та обробку помилок під час отримання та встановлення властивостей.
+- Ви можете ліниво завантажити властивості об'єкта, скажімо, отримуючи їх з сервера.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 function makeBankAccount() {
@@ -1065,21 +964,21 @@ const account = makeBankAccount();
 account.balance = 100;
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 function makeBankAccount() {
-  // this one is private
+  // ця властивість приватна
   let balance = 0;
 
-  // a "getter", made public via the returned object below
+  // "геттер", є публічним через повернутий об’єкт нижче
   function getBalance() {
     return balance;
   }
 
-  // a "setter", made public via the returned object below
+  // "сеттер", є публічним через повернутий об’єкт нижче
   function setBalance(amount) {
-    // ... validate before updating the balance
+    // ... валідація перед оновленням балансу
     balance = amount;
   }
 
@@ -1094,13 +993,13 @@ const account = makeBankAccount();
 account.setBalance(100);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Make objects have private members
+### Створюйте приватні поля в об'єктах
 
-This can be accomplished through closures (for ES5 and below).
+Цього можна досягти за допомогою замикань (для ES5 і нижче).
 
-**Bad:**
+**Погано:**
 
 ```javascript
 const Employee = function(name) {
@@ -1117,7 +1016,7 @@ delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: undefined
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 function makeEmployee(name) {
@@ -1134,18 +1033,15 @@ delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-## **Classes**
+## **Класи**
 
-### Prefer ES2015/ES6 classes over ES5 plain functions
+### Віддавайте перевагу ES2015 / ES6 класам над звичайними ES5 функціями
 
-It's very difficult to get readable class inheritance, construction, and method
-definitions for classical ES5 classes. If you need inheritance (and be aware
-that you might not), then prefer ES2015/ES6 classes. However, prefer small functions over
-classes until you find yourself needing larger and more complex objects.
+Дуже важко отримати читабельне наслідування класів, їх побудову та визначення методів у класичних ES5 класах. Якщо вам потрібне наслідування (майте на увазі, що це може бути не так), тоді віддайте перевагу ES2015 / ES6 класам. Однак віддавайте перевагу невеликим функціям над класами, доки вам не знадобляться більш великиі і складні об'єкти.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 const Animal = function(age) {
@@ -1185,7 +1081,7 @@ Human.prototype.constructor = Human;
 Human.prototype.speak = function speak() {};
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 class Animal {
@@ -1221,17 +1117,13 @@ class Human extends Mammal {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Use method chaining
+### Використовуйте прив'язку методів (method chaining)
 
-This pattern is very useful in JavaScript and you see it in many libraries such
-as jQuery and Lodash. It allows your code to be expressive, and less verbose.
-For that reason, I say, use method chaining and take a look at how clean your code
-will be. In your class functions, simply return `this` at the end of every function,
-and you can chain further class methods onto it.
+Цей паттерн дуже корисний у JavaScript, і ви спостерігаєте його у багатьох бібліотеках, таких як jQuery і Lodash. Прив'язка методів дозволяє вашому коду бути виразним і менш багатослівним. Спробуйте використати прив'язку методів і погляньте, наскільки чистим буде ваш код. У функціях класу просто поверніть `this` в кінці кожної функції, і ви можете прив'язувати до нього подальші методи класу.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 class Car {
@@ -1263,7 +1155,7 @@ car.setColor("pink");
 car.save();
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 class Car {
@@ -1275,25 +1167,25 @@ class Car {
 
   setMake(make) {
     this.make = make;
-    // NOTE: Returning this for chaining
+    // ПРИМІТКА: Повертаємо this для прив'язування
     return this;
   }
 
   setModel(model) {
     this.model = model;
-    // NOTE: Returning this for chaining
+    // ПРИМІТКА: Повертаємо this для прив'язування
     return this;
   }
 
   setColor(color) {
     this.color = color;
-    // NOTE: Returning this for chaining
+    // ПРИМІТКА: Повертаємо this для прив'язування
     return this;
   }
 
   save() {
     console.log(this.make, this.model, this.color);
-    // NOTE: Returning this for chaining
+    // ПРИМІТКА: Повертаємо this для прив'язування
     return this;
   }
 }
@@ -1301,28 +1193,19 @@ class Car {
 const car = new Car("Ford", "F-150", "red").setColor("pink").save();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Prefer composition over inheritance
+### Віддавайте перевагу композиції над наслідуванням
 
-As stated famously in [_Design Patterns_](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
-you should prefer composition over inheritance where you can. There are lots of
-good reasons to use inheritance and lots of good reasons to use composition.
-The main point for this maxim is that if your mind instinctively goes for
-inheritance, try to think if composition could model your problem better. In some
-cases it can.
+Як відомо зазначено в книзі [_Design Patterns_](https://en.wikipedia.org/wiki/Design_Patterns) Бандою Чотирьох, вам слід віддати перевагу композиції над наслідуванням, де це можливо. Є багато вагомих причин використовувати наслідування і є безліч вагомих причин використовувати композицію. Основним моментом цієї максими є те, що якщо ваш розум інстинктивно дотримується наслідування, спробуйте подумати, чи композиція могла б краще моделювати вашу проблему. У деяких випадках вона могла б.
 
-You might be wondering then, "when should I use inheritance?" It
-depends on your problem at hand, but this is a decent list of when inheritance
-makes more sense than composition:
+Тоді вам може бути цікаво: "коли я повинен використовувати наслідування?" Це залежить від вашої поточної проблеми, але це пристойний перелік ситуацій, коли наслідування має більше сенсу, ніж композиція:
 
-1. Your inheritance represents an "is-a" relationship and not a "has-a"
-   relationship (Human->Animal vs. User->UserDetails).
-2. You can reuse code from the base classes (Humans can move like all animals).
-3. You want to make global changes to derived classes by changing a base class.
-   (Change the caloric expenditure of all animals when they move).
+1. Ваше наслідування представляє відносини типу "є чимось", а не "має щось" (Людина->Тварина проти Користувач->ДеталіКористувача).
+2. Ви можете повторно використовувати код з базових класів (Люди можуть рухатися, як і всі тварини).
+3. Ви хочете внести глобальні зміни до похідних класів, змінивши базовий клас. (Зміна витрати калорій всіх тварин, коли вони рухаються).
 
-**Bad:**
+**Погано:**
 
 ```javascript
 class Employee {
@@ -1334,7 +1217,7 @@ class Employee {
   // ...
 }
 
-// Bad because Employees "have" tax data. EmployeeTaxData is not a type of Employee
+// Погано, тому що Співробітники "мають" податкові дані. EmployeeTaxData не є типом Employee
 class EmployeeTaxData extends Employee {
   constructor(ssn, salary) {
     super();
@@ -1346,7 +1229,7 @@ class EmployeeTaxData extends Employee {
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 class EmployeeTaxData {
@@ -1371,22 +1254,15 @@ class Employee {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
 ## **SOLID**
 
-### Single Responsibility Principle (SRP)
+### Принцип єдиного обов'язку (SRP)
 
-As stated in Clean Code, "There should never be more than one reason for a class
-to change". It's tempting to jam-pack a class with a lot of functionality, like
-when you can only take one suitcase on your flight. The issue with this is
-that your class won't be conceptually cohesive and it will give it many reasons
-to change. Minimizing the amount of times you need to change a class is important.
-It's important because if too much functionality is in one class and you modify
-a piece of it, it can be difficult to understand how that will affect other
-dependent modules in your codebase.
+Як зазначено в Чистому коді: "Ніколи не повинно бути більше однієї причини для зміни класу". Привабливо наповнити клас великою кількістю функціоналу, як у ситуації, коли ви можете взяти лише одну валізу у свій рейс. Проблема в тому, що ваш клас не буде концептуально єдиним, і це дасть йому багато причин для змін.Мінімізування кількості змін класу - це важливо. Це важливо тому, що якщо в одному класі забагато функціоналу і ви модифікуєте його частину, може бути важко зрозуміти, як це вплине на інші залежні модулі у вашій кодовій базі.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 class UserSettings {
@@ -1406,7 +1282,7 @@ class UserSettings {
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 class UserAuth {
@@ -1433,16 +1309,13 @@ class UserSettings {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Open/Closed Principle (OCP)
+### Принцип відкритості/закритості (OCP)
 
-As stated by Bertrand Meyer, "software entities (classes, modules, functions,
-etc.) should be open for extension, but closed for modification." What does that
-mean though? This principle basically states that you should allow users to
-add new functionalities without changing existing code.
+Як зазначає Бертран Меєр: "програмні об'єкти (класи, модулі, функції, тощо) мають бути відкритими для розширення, але закритими для внесення змін". Що мається на увазі? Загалом, цей принцип говорить, що ви повинні дозволити користувачам додавати новий функціонал без зміни існуючого коду.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 class AjaxAdapter extends Adapter {
@@ -1467,26 +1340,26 @@ class HttpRequester {
   fetch(url) {
     if (this.adapter.name === "ajaxAdapter") {
       return makeAjaxCall(url).then(response => {
-        // transform response and return
+        // трансформувати відповідь і повернути її
       });
     } else if (this.adapter.name === "nodeAdapter") {
       return makeHttpCall(url).then(response => {
-        // transform response and return
+        // трансформувати відповідь і повернути її
       });
     }
   }
 }
 
 function makeAjaxCall(url) {
-  // request and return promise
+  // виконати запит і повернути проміс
 }
 
 function makeHttpCall(url) {
-  // request and return promise
+  // виконати запит і повернути проміс
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 class AjaxAdapter extends Adapter {
@@ -1496,7 +1369,7 @@ class AjaxAdapter extends Adapter {
   }
 
   request(url) {
-    // request and return promise
+    // виконати запит і повернути проміс
   }
 }
 
@@ -1507,7 +1380,7 @@ class NodeAdapter extends Adapter {
   }
 
   request(url) {
-    // request and return promise
+    // виконати запит і повернути проміс
   }
 }
 
@@ -1518,30 +1391,23 @@ class HttpRequester {
 
   fetch(url) {
     return this.adapter.request(url).then(response => {
-      // transform response and return
+      // трансформувати відповідь і повернути її
     });
   }
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Liskov Substitution Principle (LSP)
+### Принцип підстановки Лісков (LSP)
 
-This is a scary term for a very simple concept. It's formally defined as "If S
-is a subtype of T, then objects of type T may be replaced with objects of type S
-(i.e., objects of type S may substitute objects of type T) without altering any
-of the desirable properties of that program (correctness, task performed,
-etc.)." That's an even scarier definition.
+Це страшний термін для дуже простої концепції. Формально вона визначена так: "Якщо S
+є підтипом T, тоді об'єкти типу T можуть бути замінені об'єктами типу S
+(тобто об'єкти типу S можуть підставлятися замість об'єктів типу T), не змінюючи жодної важливої властивості програми (коректність, виконання завдань, тощо)". Це ще страшніше визначення.
 
-The best explanation for this is if you have a parent class and a child class,
-then the base class and child class can be used interchangeably without getting
-incorrect results. This might still be confusing, so let's take a look at the
-classic Square-Rectangle example. Mathematically, a square is a rectangle, but
-if you model it using the "is-a" relationship via inheritance, you quickly
-get into trouble.
+Найкраще пояснення цьому - якщо у вас є батьківський клас та дочірній клас, то їх можна використовувати взаємозамінно, не отримуючи неправильних результатів. Це все ще може бентежити, тому давайте подивимось на класичний приклад Квадрат-Прямокутник. Математично квадрат є прямокутником, але якщо ви змоделюєте це за допомогою відносини "є чимось" шляхом наслідування, ви швидко отримаєте проблему.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 class Rectangle {
@@ -1587,7 +1453,7 @@ function renderLargeRectangles(rectangles) {
   rectangles.forEach(rectangle => {
     rectangle.setWidth(4);
     rectangle.setHeight(5);
-    const area = rectangle.getArea(); // BAD: Returns 25 for Square. Should be 20.
+    const area = rectangle.getArea(); // ПОГАНО: Повертає 25 для Квадрату. Повинно бути 20.
     rectangle.render(area);
   });
 }
@@ -1596,7 +1462,7 @@ const rectangles = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeRectangles(rectangles);
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 class Shape {
@@ -1643,25 +1509,17 @@ const shapes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
 renderLargeShapes(shapes);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Interface Segregation Principle (ISP)
+### Принцип розділення інтерфейсу (ISP)
 
-JavaScript doesn't have interfaces so this principle doesn't apply as strictly
-as others. However, it's important and relevant even with JavaScript's lack of
-type system.
+У JavaScript немає інтерфейсів, тому цей принцип не застосовується так суворо, як інші. Однак він є важливим і актуальним навіть при відсутності системи типів у JavaScript.
 
-ISP states that "Clients should not be forced to depend upon interfaces that
-they do not use." Interfaces are implicit contracts in JavaScript because of
-duck typing.
+ISP зазначає: "Клієнти не повинні залежати від інтерфейсів, які вони не використовують." Інтерфейси є неявними контрактами в JavaScript через качину типізацію (duck typing).
 
-A good example to look at that demonstrates this principle in JavaScript is for
-classes that require large settings objects. Not requiring clients to setup
-huge amounts of options is beneficial, because most of the time they won't need
-all of the settings. Making them optional helps prevent having a
-"fat interface".
+Хороший приклад, що демонструє цей принцип в JavaScript - це класи, які потребують великих об'єктів налаштувань. Не вимагати від клієнтів встановлення величезної кількості варіантів вигідно, тому що більшу частину часу вони не потребують всіх налаштувань. Якщо зробити налаштування необов’язковими, це допоможе запобігти появі "жирного інтерфейсу".
 
-**Bad:**
+**Погано:**
 
 ```javascript
 class DOMTraverser {
@@ -1682,12 +1540,12 @@ class DOMTraverser {
 
 const $ = new DOMTraverser({
   rootNode: document.getElementsByTagName("body"),
-  animationModule() {} // Most of the time, we won't need to animate when traversing.
+  animationModule() {} // Більшу частину часу ми не потребуємо анімації під час обходу DOM.
   // ...
 });
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 class DOMTraverser {
@@ -1721,32 +1579,20 @@ const $ = new DOMTraverser({
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Dependency Inversion Principle (DIP)
+### Принцип інверсії залежностей (DIP)
 
-This principle states two essential things:
+Цей принцип визначає дві важливі речі:
 
-1. High-level modules should not depend on low-level modules. Both should
-   depend on abstractions.
-2. Abstractions should not depend upon details. Details should depend on
-   abstractions.
+1. Модулі високого рівня не повинні залежати від модулів низького рівня. І ті й інші повинні залежати від абстракцій.
+2. Абстракції не повинні залежати від деталей. Деталі повинні залежати від абстракцій.
 
-This can be hard to understand at first, but if you've worked with AngularJS,
-you've seen an implementation of this principle in the form of Dependency
-Injection (DI). While they are not identical concepts, DIP keeps high-level
-modules from knowing the details of its low-level modules and setting them up.
-It can accomplish this through DI. A huge benefit of this is that it reduces
-the coupling between modules. Coupling is a very bad development pattern because
-it makes your code hard to refactor.
+Спочатку це може бути важко зрозуміти, але якщо ви працювали з AngularJS, ви бачили реалізацію цього принципу у формі впровадження залежностей (DI). Хоча вони не є ідентичними поняттями, DIP утримує модулі високого рівня від знання деталей модулів низького рівня та їх налаштування. Цього можна досягти за допомогою DI. Величезна перевага впровадження залежностей полягає в тому, що воно зменшує зв'язування між модулями. Зв'язування - це дуже поганий паттерн розробки, оскільки це робить ваш код важким для рефакторингу.
 
-As stated previously, JavaScript doesn't have interfaces so the abstractions
-that are depended upon are implicit contracts. That is to say, the methods
-and properties that an object/class exposes to another object/class. In the
-example below, the implicit contract is that any Request module for an
-`InventoryTracker` will have a `requestItems` method.
+Як було сказано раніше, у JavaScript немає інтерфейсів, тому абстракції є неявними контрактами. Тобто методами та властивостями, які об'єкт/клас показує іншому об'єкту/класу. У наведеному нижче прикладі неявний контракт полягає в тому, що будь-який модуль запиту для `InventoryTracker` матиме метод `requestItems`.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 class InventoryRequester {
@@ -1763,8 +1609,8 @@ class InventoryTracker {
   constructor(items) {
     this.items = items;
 
-    // BAD: We have created a dependency on a specific request implementation.
-    // We should just have requestItems depend on a request method: `request`
+    // ПОГАНО: Ми створили залежність від реалізації конкретного запиту.
+    // Треба щоб requestItems залежав тільки від методу запиту: `request`
     this.requester = new InventoryRequester();
   }
 
@@ -1779,7 +1625,7 @@ const inventoryTracker = new InventoryTracker(["apples", "bananas"]);
 inventoryTracker.requestItems();
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 class InventoryTracker {
@@ -1815,8 +1661,8 @@ class InventoryRequesterV2 {
   }
 }
 
-// By constructing our dependencies externally and injecting them, we can easily
-// substitute our request module for a fancy new one that uses WebSockets.
+// Побудувавши залежності зовні та впровадивши їх, ми можемо легко
+// замінити наш модуль запиту на новий та модний, що використовує вебсокети.
 const inventoryTracker = new InventoryTracker(
   ["apples", "bananas"],
   new InventoryRequesterV2()
@@ -1824,28 +1670,17 @@ const inventoryTracker = new InventoryTracker(
 inventoryTracker.requestItems();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-## **Testing**
+## **Тестування**
 
-Testing is more important than shipping. If you have no tests or an
-inadequate amount, then every time you ship code you won't be sure that you
-didn't break anything. Deciding on what constitutes an adequate amount is up
-to your team, but having 100% coverage (all statements and branches) is how
-you achieve very high confidence and developer peace of mind. This means that
-in addition to having a great testing framework, you also need to use a
-[good coverage tool](https://gotwarlost.github.io/istanbul/).
+Тестування важливіше, ніж доставка коду. Якщо у вас немає тестів або їх кількість недостатня, то кожного разу, надсилаючи код, ви не будете впевнені, що нічого не зламали. Питання про те, що становить адекватну кількість тестів, вирішується вашою командою, але 100% покриття (усі вирази та гілки) - це те, як ви досягаєте дуже високої впевненості та спокою як розробник. Це означає, що окрім чудового фреймворку тестування, вам також потрібно використовувати [гарний інструмент покриття](https://gotwarlost.github.io/istanbul/).
 
-There's no excuse to not write tests. There are [plenty of good JS test frameworks](https://jstherightway.org/#testing-tools), so find one that your team prefers.
-When you find one that works for your team, then aim to always write tests
-for every new feature/module you introduce. If your preferred method is
-Test Driven Development (TDD), that is great, but the main point is to just
-make sure you are reaching your coverage goals before launching any feature,
-or refactoring an existing one.
+Немає приводу не писати тестів. Існує [безліч хороших JS фреймворків](https://jstherightway.org#testing-tools), тож знайдіть такий, якому віддає перевагу ваша команда. Коли ви знайдете такий, що підходить вашій команді, намагайтесь завжди писати тести для кожної нової функції/модуля, який ви вводите.Якщо вашим улюбленим методом є розробка через тестування (TDD), це чудово, але головне - просто переконайтеся, що ви досягаєте своїх планів з покриття тестами, перш ніж запускати будь-яку функцію або рефакторити існуючу.
 
-### Single concept per test
+### Одна концепція на один тест
 
-**Bad:**
+**Погано:**
 
 ```javascript
 import assert from "assert";
@@ -1869,7 +1704,7 @@ describe("MomentJS", () => {
 });
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 import assert from "assert";
@@ -1895,16 +1730,16 @@ describe("MomentJS", () => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-## **Concurrency**
+## **Асинхронність**
 
-### Use Promises, not callbacks
+### Використовуйте проміси замість колбеків
 
-Callbacks aren't clean, and they cause excessive amounts of nesting. With ES2015/ES6,
-Promises are a built-in global type. Use them!
+Колбеки не є чистими, і вони викликають надмірну кількість вкладеності. З ES2015 / ES6,
+проміси - це вбудований глобальний тип. Використовуйте їх!
 
-**Bad:**
+**Погано:**
 
 ```javascript
 import { get } from "request";
@@ -1928,7 +1763,7 @@ get(
 );
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 import { get } from "request-promise";
@@ -1946,17 +1781,13 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
   });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Async/Await are even cleaner than Promises
+### Async/Await ще чистіший за проміси
 
-Promises are a very clean alternative to callbacks, but ES2017/ES8 brings async and await
-which offer an even cleaner solution. All you need is a function that is prefixed
-in an `async` keyword, and then you can write your logic imperatively without
-a `then` chain of functions. Use this if you can take advantage of ES2017/ES8 features
-today!
+Проміси є дуже чистою альтернативою колбекам, але ES2017 / ES8 приносить async та await, які пропонують ще більш чисте рішення. Все, що вам потрібно, - це функція, яка має в префіксі ключове слово `async`, і тоді ви можете імперативно писати логіку без прив'язки функцій до `then`.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 import { get } from "request-promise";
@@ -1974,7 +1805,7 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
   });
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 import { get } from "request-promise";
@@ -1995,25 +1826,19 @@ async function getCleanCodeArticle() {
 getCleanCodeArticle()
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-## **Error Handling**
+## **Обробка помилок**
 
-Thrown errors are a good thing! They mean the runtime has successfully
-identified when something in your program has gone wrong and it's letting
-you know by stopping function execution on the current stack, killing the
-process (in Node), and notifying you in the console with a stack trace.
+Викидання помилок - це гарна річ! Воно означає, що під час виконання программа успішно
+ідентифікувала, коли щось пішло не так, і дозволяє вам знати про це, зупиняючи виконання функції на поточному стеку, вбиваючи процесс (у Node) та повідомляючи вас трасировкою стеку у консолі.
 
-### Don't ignore caught errors
+### Не ігноруйте перехоплені помилки
 
-Doing nothing with a caught error doesn't give you the ability to ever fix
-or react to said error. Logging the error to the console (`console.log`)
-isn't much better as often times it can get lost in a sea of things printed
-to the console. If you wrap any bit of code in a `try/catch` it means you
-think an error may occur there and therefore you should have a plan,
-or create a code path, for when it occurs.
+Якщо нічого не робити із перехопленою помилкою, ви не зможете її виправити або зреагувати на неї. Логування помилки у консолі (`console.log`) не набагато краще, оскільки часто цей лог може загубитися в морі того, що друкується у консолі. Якщо ви вкладаєте фрагмент коду в `try/catch`, це означає, що ви
+передбачаєте там помилку, і тому ви повинні мати план або створити шлях коду, коли помилка виникає.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 try {
@@ -2023,28 +1848,27 @@ try {
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 try {
   functionThatMightThrow();
 } catch (error) {
-  // One option (more noisy than console.log):
+  // Один варіант (більш помітний, ніж console.log):
   console.error(error);
-  // Another option:
+  // Інший варіант:
   notifyUserOfError(error);
-  // Another option:
+  // Інший варіант:
   reportErrorToService(error);
-  // OR do all three!
+  // АБО використовуйте всі три!
 }
 ```
 
-### Don't ignore rejected promises
+### Не ігноруйте відхилені проміси
 
-For the same reason you shouldn't ignore caught errors
-from `try/catch`.
+З тих причин, що і перехоплені помилки з `try/catch`.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 getdata()
@@ -2056,7 +1880,7 @@ getdata()
   });
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 getdata()
@@ -2064,36 +1888,29 @@ getdata()
     functionThatMightThrow(data);
   })
   .catch(error => {
-    // One option (more noisy than console.log):
+    // Один варіант (більш помітний, ніж console.log):
     console.error(error);
-    // Another option:
+    // Інший варіант:
     notifyUserOfError(error);
-    // Another option:
+    // AІнший варіант:
     reportErrorToService(error);
-    // OR do all three!
+    // OАБО використовуйте всі три!
   });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-## **Formatting**
+## **Форматування**
 
-Formatting is subjective. Like many rules herein, there is no hard and fast
-rule that you must follow. The main point is DO NOT ARGUE over formatting.
-There are [tons of tools](https://standardjs.com/rules.html) to automate this.
-Use one! It's a waste of time and money for engineers to argue over formatting.
+Форматування суб'єктивне. Подібно до багатьох правил тут - не існує жорсткого припису, якого потрібно дотримуватися. Основний момент - НЕ СПЕРЕЧАЙТЕСЬ над форматуванням. Існує [безліч інструментів](https://standardjs.com/rules.html) для його автоматизації. Використовуйте один з них! Марно витрачати час і гроші, щоб інженери сперечалися з приводу форматування.
 
-For things that don't fall under the purview of automatic formatting
-(indentation, tabs vs. spaces, double vs. single quotes, etc.) look here
-for some guidance.
+Для ситуацій, які не підпадають під автоматичне форматування (відступи, табуляції проти пробілів, подвійні проти одиничних лапок тощо), тут наявні декілька вказівок.
 
-### Use consistent capitalization
+### Використовуйте послідовні регістри
 
-JavaScript is untyped, so capitalization tells you a lot about your variables,
-functions, etc. These rules are subjective, so your team can choose whatever
-they want. The point is, no matter what you all choose, just be consistent.
+JavaScript не типізований, тому регістр багато говорить про ваші змінні, функції тощо. Ці правила є суб'єктивними, тому ваша команда може вибрати будь-які. Головне - незалежно від того, що ви обираєте,  будьте послідовними.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 const DAYS_IN_WEEK = 7;
@@ -2109,7 +1926,7 @@ class animal {}
 class Alpaca {}
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 const DAYS_IN_WEEK = 7;
@@ -2125,15 +1942,13 @@ class Animal {}
 class Alpaca {}
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Function callers and callees should be close
+### Викликаюча функція і та, котру викликають, повинні бути близько одна до одної
 
-If a function calls another, keep those functions vertically close in the source
-file. Ideally, keep the caller right above the callee. We tend to read code from
-top-to-bottom, like a newspaper. Because of this, make your code read that way.
+Якщо функція викликає іншу, тримайте ці функції вертикально близько у вихідному файлі. В ідеалі тримайте викликаючу функцію прямо над тою, котру викликають. Ми схильні читати код з верху вниз, як газету. Тому зробіть так, щоб ваш код читався таким чином.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 class PerformanceReview {
@@ -2173,7 +1988,7 @@ const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 class PerformanceReview {
@@ -2213,37 +2028,37 @@ const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-## **Comments**
+## **Коментарі**
 
-### Only comment things that have business logic complexity.
+### Коментуйте лише ті фрагменти, які мають складну бізнес-логіку.
 
-Comments are an apology, not a requirement. Good code _mostly_ documents itself.
+Коментарі - це вибачення, а не вимога. Якісний код _переважно_ документує себе сам.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 function hashIt(data) {
-  // The hash
+  // Хеш
   let hash = 0;
 
-  // Length of string
+  // Довжина рядка
   const length = data.length;
 
-  // Loop through every character in data
+  // Проходимось циклом через кожний символ у даних
   for (let i = 0; i < length; i++) {
-    // Get character code.
+    // Отримуємо код символу.
     const char = data.charCodeAt(i);
-    // Make the hash
+    // Створюємо хеш
     hash = (hash << 5) - hash + char;
-    // Convert to 32-bit integer
+    // Конвертуємо в 32-бітне ціле число
     hash &= hash;
   }
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 function hashIt(data) {
@@ -2254,19 +2069,19 @@ function hashIt(data) {
     const char = data.charCodeAt(i);
     hash = (hash << 5) - hash + char;
 
-    // Convert to 32-bit integer
+    // Конвертуємо в 32-бітне ціле число
     hash &= hash;
   }
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Don't leave commented out code in your codebase
+### Не залишайте закоментований код у кодовій базі
 
-Version control exists for a reason. Leave old code in your history.
+Контроль версій існує не просто так. Залиште старий код в історії.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 doStuff();
@@ -2275,34 +2090,34 @@ doStuff();
 // doSoMuchStuff();
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 doStuff();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Don't have journal comments
+### Не заводьте журнальних коментарів
 
-Remember, use version control! There's no need for dead code, commented code,
-and especially journal comments. Use `git log` to get history!
+Пам'ятайте - використовуйте контроль версій! Немає необхідності в мертвому коді, закоментованому коді,
+і особливо в журнальних коментарях. Використовуйте `git log`, щоб отримати історію!
 
-**Bad:**
+**Погано:**
 
 ```javascript
 /**
- * 2016-12-20: Removed monads, didn't understand them (RM)
- * 2016-10-01: Improved using special monads (JP)
- * 2016-02-03: Removed type-checking (LI)
- * 2015-03-14: Added combine with type-checking (JR)
+ * 2016-12-20: Видалив монади, не зрозумів їх (RM)
+ * 2016-10-01: Покращив використання спеціальних монад (JP)
+ * 2016-02-03: Видалив перевірку типів (LI)
+ * 2015-03-14: Додав combine з перевіркою типів (JR)
  */
 function combine(a, b) {
   return a + b;
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 function combine(a, b) {
@@ -2310,18 +2125,17 @@ function combine(a, b) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Avoid positional markers
+### Уникайте позиційних маркерів
 
-They usually just add noise. Let the functions and variable names along with the
-proper indentation and formatting give the visual structure to your code.
+Зазвичай вони просто додають шум. Нехай функції та назви змінних разом із належними відступами та форматуванням надають візуальну структуру вашому коду.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 ////////////////////////////////////////////////////////////////////////////////
-// Scope Model Instantiation
+// Ініціалізація властивості model об'єкта $scope
 ////////////////////////////////////////////////////////////////////////////////
 $scope.model = {
   menu: "foo",
@@ -2329,14 +2143,14 @@ $scope.model = {
 };
 
 ////////////////////////////////////////////////////////////////////////////////
-// Action setup
+// Встановлення екшену
 ////////////////////////////////////////////////////////////////////////////////
 const actions = function() {
   // ...
 };
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 $scope.model = {
@@ -2349,32 +2163,32 @@ const actions = function() {
 };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-## Translation
+## Переклад
 
-This is also available in other languages:
+Цей посібник також доступний на інших мовах:
 
-- ![am](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Armenia.png) **Armenian**: [hanumanum/clean-code-javascript/](https://github.com/hanumanum/clean-code-javascript)
-- ![bd](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Bangladesh.png) **Bangla(বাংলা)**: [InsomniacSabbir/clean-code-javascript/](https://github.com/InsomniacSabbir/clean-code-javascript/)
-- ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Brazilian Portuguese**: [fesnt/clean-code-javascript](https://github.com/fesnt/clean-code-javascript)
-- ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Simplified Chinese**:
+- ![am](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Armenia.png) **Вірменська**: [hanumanum/clean-code-javascript/](https://github.com/hanumanum/clean-code-javascript)
+- ![bd](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Bangladesh.png) **Бенгальська**: [InsomniacSabbir/clean-code-javascript/](https://github.com/InsomniacSabbir/clean-code-javascript/)
+- ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Бразильська португальська**: [fesnt/clean-code-javascript](https://github.com/fesnt/clean-code-javascript)
+- ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Спрощена китайська**:
   - [alivebao/clean-code-js](https://github.com/alivebao/clean-code-js)
   - [beginor/clean-code-javascript](https://github.com/beginor/clean-code-javascript)
-- ![tw](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Taiwan.png) **Traditional Chinese**: [AllJointTW/clean-code-javascript](https://github.com/AllJointTW/clean-code-javascript)
-- ![fr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/France.png) **French**: [GavBaros/clean-code-javascript-fr](https://github.com/GavBaros/clean-code-javascript-fr)
-- ![de](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Germany.png) **German**: [marcbruederlin/clean-code-javascript](https://github.com/marcbruederlin/clean-code-javascript)
-- ![id](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Indonesia.png) **Indonesia**: [andirkh/clean-code-javascript/](https://github.com/andirkh/clean-code-javascript/)
-- ![it](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Italy.png) **Italian**: [frappacchio/clean-code-javascript/](https://github.com/frappacchio/clean-code-javascript/)
-- ![ja](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Japan.png) **Japanese**: [mitsuruog/clean-code-javascript/](https://github.com/mitsuruog/clean-code-javascript/)
-- ![kr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) **Korean**: [qkraudghgh/clean-code-javascript-ko](https://github.com/qkraudghgh/clean-code-javascript-ko)
-- ![pl](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Poland.png) **Polish**: [greg-dev/clean-code-javascript-pl](https://github.com/greg-dev/clean-code-javascript-pl)
-- ![ru](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Russia.png) **Russian**:
+- ![tw](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Taiwan.png) **Традиційна китайська**: [AllJointTW/clean-code-javascript](https://github.com/AllJointTW/clean-code-javascript)
+- ![fr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/France.png) **Французька**: [GavBaros/clean-code-javascript-fr](https://github.com/GavBaros/clean-code-javascript-fr)
+- ![de](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Germany.png) **Німецька**: [marcbruederlin/clean-code-javascript](https://github.com/marcbruederlin/clean-code-javascript)
+- ![id](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Indonesia.png) **Індонезійська**: [andirkh/clean-code-javascript/](https://github.com/andirkh/clean-code-javascript/)
+- ![it](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Italy.png) **Італійська**: [frappacchio/clean-code-javascript/](https://github.com/frappacchio/clean-code-javascript/)
+- ![ja](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Japan.png) **Японська**: [mitsuruog/clean-code-javascript/](https://github.com/mitsuruog/clean-code-javascript/)
+- ![kr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) **Корейська**: [qkraudghgh/clean-code-javascript-ko](https://github.com/qkraudghgh/clean-code-javascript-ko)
+- ![pl](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Poland.png) **Польська**: [greg-dev/clean-code-javascript-pl](https://github.com/greg-dev/clean-code-javascript-pl)
+- ![ru](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Russia.png) **Російська**:
   - [BoryaMogila/clean-code-javascript-ru/](https://github.com/BoryaMogila/clean-code-javascript-ru/)
   - [maksugr/clean-code-javascript](https://github.com/maksugr/clean-code-javascript)
-- ![es](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Spain.png) **Spanish**: [tureey/clean-code-javascript](https://github.com/tureey/clean-code-javascript)
-- ![es](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Uruguay.png) **Spanish**: [andersontr15/clean-code-javascript](https://github.com/andersontr15/clean-code-javascript-es)
-- ![tr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Turkey.png) **Turkish**: [bsonmez/clean-code-javascript](https://github.com/bsonmez/clean-code-javascript/tree/turkish-translation)
-- ![vi](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Vietnam.png) **Vietnamese**: [hienvd/clean-code-javascript/](https://github.com/hienvd/clean-code-javascript/)
+- ![es](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Spain.png) **Іспанська**: [tureey/clean-code-javascript](https://github.com/tureey/clean-code-javascript)
+- ![es](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Uruguay.png) **Іспанська**: [andersontr15/clean-code-javascript](https://github.com/andersontr15/clean-code-javascript-es)
+- ![tr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Turkey.png) **Турецька**: [bsonmez/clean-code-javascript](https://github.com/bsonmez/clean-code-javascript/tree/turkish-translation)
+- ![vi](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Vietnam.png) **В'єтнамська**: [hienvd/clean-code-javascript/](https://github.com/hienvd/clean-code-javascript/)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
