@@ -12,7 +12,7 @@
 8. [Асинхронність](#Асинхронність)
 9. [Обробка помилок](#Обробка-помилок)
 10. [Форматування](#Форматування)
-11. [Коментарі](#comments)
+11. [Коментарі](#Коментарі)
 12. [Переклад](#translation)
 
 ## Вступ
@@ -1902,22 +1902,15 @@ getdata()
 
 ## **Форматування**
 
-Formatting is subjective. Like many rules herein, there is no hard and fast
-rule that you must follow. The main point is DO NOT ARGUE over formatting.
-There are [tons of tools](https://standardjs.com/rules.html) to automate this.
-Use one! It's a waste of time and money for engineers to argue over formatting.
+Форматування суб'єктивне. Подібно до багатьох правил тут - не існує жорсткого припису, якого потрібно дотримуватися. Основний момент - НЕ СПЕРЕЧАЙТЕСЬ над форматуванням. Існує [безліч інструментів](https://standardjs.com/rules.html) для його автоматизації. Використовуйте один з них! Марно витрачати час і гроші, щоб інженери сперечалися з приводу форматування.
 
-For things that don't fall under the purview of automatic formatting
-(indentation, tabs vs. spaces, double vs. single quotes, etc.) look here
-for some guidance.
+Для ситуацій, які не підпадають під автоматичне форматування (відступи, табуляції проти пробілів, подвійні проти одиничних лапок тощо), тут наявні декілька вказівок.
 
-### Use consistent capitalization
+### Використовуйте послідовні регістри
 
-JavaScript is untyped, so capitalization tells you a lot about your variables,
-functions, etc. These rules are subjective, so your team can choose whatever
-they want. The point is, no matter what you all choose, just be consistent.
+JavaScript не типізований, тому регістр багато говорить про ваші змінні, функції тощо. Ці правила є суб'єктивними, тому ваша команда може вибрати будь-які. Головне - незалежно від того, що ви обираєте,  будьте послідовними.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 const DAYS_IN_WEEK = 7;
@@ -1933,7 +1926,7 @@ class animal {}
 class Alpaca {}
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 const DAYS_IN_WEEK = 7;
@@ -1949,15 +1942,13 @@ class Animal {}
 class Alpaca {}
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Function callers and callees should be close
+### Викликаюча функція і та, котру викликають, повинні бути близько одна до одної
 
-If a function calls another, keep those functions vertically close in the source
-file. Ideally, keep the caller right above the callee. We tend to read code from
-top-to-bottom, like a newspaper. Because of this, make your code read that way.
+Якщо функція викликає іншу, тримайте ці функції вертикально близько у вихідному файлі. В ідеалі тримайте викликаючу функцію прямо над тою, котру викликають. Ми схильні читати код з верху вниз, як газету. Тому зробіть так, щоб ваш код читався таким чином.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 class PerformanceReview {
@@ -1997,7 +1988,7 @@ const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 class PerformanceReview {
@@ -2037,9 +2028,9 @@ const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-## **Comments**
+## **Коментарі**
 
 ### Only comment things that have business logic complexity.
 
