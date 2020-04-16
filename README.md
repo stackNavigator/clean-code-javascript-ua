@@ -11,7 +11,7 @@
 7. [Тестування](#Тестування)
 8. [Асинхронність](#Асинхронність)
 9. [Обробка помилок](#Обробка-помилок)
-10. [Форматування](#formatting)
+10. [Форматування](#Форматування)
 11. [Коментарі](#comments)
 12. [Переклад](#translation)
 
@@ -945,7 +945,7 @@ inventoryTracker("apples", req, "www.inventory-awesome.io");
 - Коли ви хочете зробити більше, ніж отримати властивість об’єкта, вам не потрібно шукати та змінювати кожне місце доступу до властивості об'єкта.
 - Робить валідацію простою при роботі з `set`.
 - Інкапсулює внутрішнє представлення.
-- Легко додавати логінг та обробку помилок під час отримання та встановлення властивостей.
+- Легко додавати логування та обробку помилок під час отримання та встановлення властивостей.
 - Ви можете ліниво завантажити властивості об'єкта, скажімо, отримуючи їх з сервера.
 
 **Погано:**
@@ -1830,21 +1830,15 @@ getCleanCodeArticle()
 
 ## **Обробка помилок**
 
-Thrown errors are a good thing! They mean the runtime has successfully
-identified when something in your program has gone wrong and it's letting
-you know by stopping function execution on the current stack, killing the
-process (in Node), and notifying you in the console with a stack trace.
+Викидання помилок - це гарна річ! Воно означає, що під час виконання программа успішно
+ідентифікувала, коли щось пішло не так, і дозволяє вам знати про це, зупиняючи виконання функції на поточному стеку, вбиваючи процесс (у Node) та повідомляючи вас трасировкою стеку у консолі.
 
-### Don't ignore caught errors
+### Не ігноруйте перехоплені помилки
 
-Doing nothing with a caught error doesn't give you the ability to ever fix
-or react to said error. Logging the error to the console (`console.log`)
-isn't much better as often times it can get lost in a sea of things printed
-to the console. If you wrap any bit of code in a `try/catch` it means you
-think an error may occur there and therefore you should have a plan,
-or create a code path, for when it occurs.
+Якщо нічого не робити із перехопленою помилкою, ви не зможете її виправити або зреагувати на неї. Логування помилки у консолі (`console.log`) не набагато краще, оскільки часто цей лог може загубитися в морі того, що друкується у консолі. Якщо ви вкладаєте фрагмент коду в `try/catch`, це означає, що ви
+передбачаєте там помилку, і тому ви повинні мати план або створити шлях коду, коли помилка виникає.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 try {
@@ -1854,28 +1848,27 @@ try {
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 try {
   functionThatMightThrow();
 } catch (error) {
-  // One option (more noisy than console.log):
+  // Один варіант (більш помітний, ніж console.log):
   console.error(error);
-  // Another option:
+  // Інший варіант:
   notifyUserOfError(error);
-  // Another option:
+  // Інший варіант:
   reportErrorToService(error);
-  // OR do all three!
+  // АБО використовуйте всі три!
 }
 ```
 
-### Don't ignore rejected promises
+### Не ігноруйте відхилені проміси
 
-For the same reason you shouldn't ignore caught errors
-from `try/catch`.
+З тих причин, що і перехоплені помилки з `try/catch`.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 getdata()
@@ -1887,7 +1880,7 @@ getdata()
   });
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 getdata()
@@ -1895,19 +1888,19 @@ getdata()
     functionThatMightThrow(data);
   })
   .catch(error => {
-    // One option (more noisy than console.log):
+    // Один варіант (більш помітний, ніж console.log):
     console.error(error);
-    // Another option:
+    // Інший варіант:
     notifyUserOfError(error);
-    // Another option:
+    // AІнший варіант:
     reportErrorToService(error);
-    // OR do all three!
+    // OАБО використовуйте всі три!
   });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-## **Formatting**
+## **Форматування**
 
 Formatting is subjective. Like many rules herein, there is no hard and fast
 rule that you must follow. The main point is DO NOT ARGUE over formatting.
