@@ -8,7 +8,7 @@
 4. [Об'єкти та структури даних](#Об'єкти-та-структури-даних)
 5. [Класи](#Класи)
 6. [SOLID](#SOLID)
-7. [Тестування](#testing)
+7. [Тестування](#Тестування)
 8. [Асинхронність](#concurrency)
 9. [Обробка помилок](#error-handling)
 10. [Форматування](#formatting)
@@ -23,7 +23,7 @@
 Принципи програмної інженерії з книги Роберта С. Мартіна 
 [_Clean Code_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882), адаптовані для JavaScript. Це не гайд зі стилю кода. Це посібник для розробки програмного забезпечення
 на JavaScript, котре 
-[легко читати, повторно використовувати і рефакторувати](https://github.com/ryanmcdermott/3rs-of-software-architecture).
+[легко читати, повторно використовувати і рефакторити](https://github.com/ryanmcdermott/3rs-of-software-architecture).
 
 Не кожен згаданий тут принцип обов'язковий до дотримання, і лише деякі з них не
 викличуть розбіжностей. Це поради і нічого більше, але їх документували
@@ -270,7 +270,7 @@ createMenu({
 
 ### Функції повинні виконувати одну дію
 
-Це, безумовно, найважливіше правило в програмній інженерії. Коли функції виконують більше одної дії, їх важко поєднувати, тестувати та обґрунтовувати. Коли ви можете обмежити функцію до тільки одної дії, її можна легко рефакторувати і ваш код буде набагато чистішим. Навіть якщо ви засвоїте з цього посібника тільки цю пораду, ви будете попереду багатьох розробників.
+Це, безумовно, найважливіше правило в програмній інженерії. Коли функції виконують більше одної дії, їх важко поєднувати, тестувати та обґрунтовувати. Коли ви можете обмежити функцію до тільки одної дії, її можна легко рефакторити і ваш код буде набагато чистішим. Навіть якщо ви засвоїте з цього посібника тільки цю пораду, ви будете попереду багатьох розробників.
 
 **Погано:**
 
@@ -607,7 +607,7 @@ console.log(newName); // ['Ryan', 'McDermott'];
 
 Два застереження, які слід згадати при такому підході:
 
-1. Можуть бути випадки, коли ви дійсно хочете змінити об'єкт на вході, але коли ви застосуєте цю практику  програмування, ви виявите, що ці випадки є досить рідкісними. Більшість речей можна рефакторувати так, щоб уникнути побічних ефектів!
+1. Можуть бути випадки, коли ви дійсно хочете змінити об'єкт на вході, але коли ви застосуєте цю практику  програмування, ви виявите, що ці випадки є досить рідкісними. Більшість речей можна відрефакторити так, щоб уникнути побічних ефектів!
 
 2. Клонування великих об'єктів може бути дуже дорогим з точки зору продуктивності. На щастя, це не є великою проблемою на практиці, оскільки є [чудові бібліотеки](https://facebook.github.io/immutable-js/), що дозволяють такому підходу програмування бути швидким і не таким вибагливим до пам'яті, як клонування об’єктів та масивів вручну.
 
@@ -1258,18 +1258,11 @@ class Employee {
 
 ## **SOLID**
 
-### Принцип єдиної відповідальності (SRP)
+### Принцип єдиного обов'язку (SRP)
 
-As stated in Clean Code, "There should never be more than one reason for a class
-to change". It's tempting to jam-pack a class with a lot of functionality, like
-when you can only take one suitcase on your flight. The issue with this is
-that your class won't be conceptually cohesive and it will give it many reasons
-to change. Minimizing the amount of times you need to change a class is important.
-It's important because if too much functionality is in one class and you modify
-a piece of it, it can be difficult to understand how that will affect other
-dependent modules in your codebase.
+Як зазначено в Чистому коді: "Ніколи не повинно бути більше однієї причини для зміни класу". Привабливо наповнити клас великою кількістю функціоналу, як у ситуації, коли ви можете взяти лише одну валізу у свій рейс. Проблема в тому, що ваш клас не буде концептуально єдиним, і це дасть йому багато причин для змін.Мінімізування кількості змін класу - це важливо. Це важливо тому, що якщо в одному класі забагато функціоналу і ви модифікуєте його частину, може бути важко зрозуміти, як це вплине на інші залежні модулі у вашій кодовій базі.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 class UserSettings {
@@ -1289,7 +1282,7 @@ class UserSettings {
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 class UserAuth {
@@ -1316,16 +1309,13 @@ class UserSettings {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Open/Closed Principle (OCP)
+### Принцип відкритості/закритості (OCP)
 
-As stated by Bertrand Meyer, "software entities (classes, modules, functions,
-etc.) should be open for extension, but closed for modification." What does that
-mean though? This principle basically states that you should allow users to
-add new functionalities without changing existing code.
+Як зазначає Бертран Меєр: "програмні об'єкти (класи, модулі, функції, тощо) мають бути відкритими для розширення, але закритими для внесення змін". Що мається на увазі? Загалом, цей принцип говорить, що ви повинні дозволити користувачам додавати новий функціонал без зміни існуючого коду.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 class AjaxAdapter extends Adapter {
@@ -1350,26 +1340,26 @@ class HttpRequester {
   fetch(url) {
     if (this.adapter.name === "ajaxAdapter") {
       return makeAjaxCall(url).then(response => {
-        // transform response and return
+        // трансформувати відповідь і повернути її
       });
     } else if (this.adapter.name === "nodeAdapter") {
       return makeHttpCall(url).then(response => {
-        // transform response and return
+        // трансформувати відповідь і повернути її
       });
     }
   }
 }
 
 function makeAjaxCall(url) {
-  // request and return promise
+  // виконати запит і повернути проміс
 }
 
 function makeHttpCall(url) {
-  // request and return promise
+  // виконати запит і повернути проміс
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 class AjaxAdapter extends Adapter {
@@ -1379,7 +1369,7 @@ class AjaxAdapter extends Adapter {
   }
 
   request(url) {
-    // request and return promise
+    // виконати запит і повернути проміс
   }
 }
 
@@ -1390,7 +1380,7 @@ class NodeAdapter extends Adapter {
   }
 
   request(url) {
-    // request and return promise
+    // виконати запит і повернути проміс
   }
 }
 
@@ -1401,30 +1391,23 @@ class HttpRequester {
 
   fetch(url) {
     return this.adapter.request(url).then(response => {
-      // transform response and return
+      // трансформувати відповідь і повернути її
     });
   }
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Liskov Substitution Principle (LSP)
+### Принцип підстановки Лісков (LSP)
 
-This is a scary term for a very simple concept. It's formally defined as "If S
-is a subtype of T, then objects of type T may be replaced with objects of type S
-(i.e., objects of type S may substitute objects of type T) without altering any
-of the desirable properties of that program (correctness, task performed,
-etc.)." That's an even scarier definition.
+Це страшний термін для дуже простої концепції. Формально вона визначена так: "Якщо S
+є підтипом T, тоді об'єкти типу T можуть бути замінені об'єктами типу S
+(тобто об'єкти типу S можуть підставлятися замість об'єктів типу T), не змінюючи жодної важливої властивості програми (коректність, виконання завдань, тощо)". Це ще страшніше визначення.
 
-The best explanation for this is if you have a parent class and a child class,
-then the base class and child class can be used interchangeably without getting
-incorrect results. This might still be confusing, so let's take a look at the
-classic Square-Rectangle example. Mathematically, a square is a rectangle, but
-if you model it using the "is-a" relationship via inheritance, you quickly
-get into trouble.
+Найкраще пояснення цьому - якщо у вас є батьківський клас та дочірній клас, то їх можна використовувати взаємозамінно, не отримуючи неправильних результатів. Це все ще може бентежити, тому давайте подивимось на класичний приклад Квадрат-Прямокутник. Математично квадрат є прямокутником, але якщо ви змоделюєте це за допомогою відносини "є чимось" шляхом наслідування, ви швидко отримаєте проблему.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 class Rectangle {
@@ -1470,7 +1453,7 @@ function renderLargeRectangles(rectangles) {
   rectangles.forEach(rectangle => {
     rectangle.setWidth(4);
     rectangle.setHeight(5);
-    const area = rectangle.getArea(); // BAD: Returns 25 for Square. Should be 20.
+    const area = rectangle.getArea(); // ПОГАНО: Повертає 25 для Квадрату. Повинно бути 20.
     rectangle.render(area);
   });
 }
@@ -1479,7 +1462,7 @@ const rectangles = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeRectangles(rectangles);
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 class Shape {
@@ -1526,25 +1509,17 @@ const shapes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
 renderLargeShapes(shapes);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Interface Segregation Principle (ISP)
+### Принцип розділення інтерфейсу (ISP)
 
-JavaScript doesn't have interfaces so this principle doesn't apply as strictly
-as others. However, it's important and relevant even with JavaScript's lack of
-type system.
+У JavaScript немає інтерфейсів, тому цей принцип не застосовується так суворо, як інші. Однак він є важливим і актуальним навіть при відсутності системи типів у JavaScript.
 
-ISP states that "Clients should not be forced to depend upon interfaces that
-they do not use." Interfaces are implicit contracts in JavaScript because of
-duck typing.
+ISP зазначає: "Клієнти не повинні залежати від інтерфейсів, які вони не використовують." Інтерфейси є неявними контрактами в JavaScript через качину типізацію (duck typing).
 
-A good example to look at that demonstrates this principle in JavaScript is for
-classes that require large settings objects. Not requiring clients to setup
-huge amounts of options is beneficial, because most of the time they won't need
-all of the settings. Making them optional helps prevent having a
-"fat interface".
+Хороший приклад, що демонструє цей принцип в JavaScript - це класи, які потребують великих об'єктів налаштувань. Не вимагати від клієнтів встановлення величезної кількості варіантів вигідно, тому що більшу частину часу вони не потребують всіх налаштувань. Якщо зробити налаштування необов’язковими, це допоможе запобігти появі "жирного інтерфейсу".
 
-**Bad:**
+**Погано:**
 
 ```javascript
 class DOMTraverser {
@@ -1565,12 +1540,12 @@ class DOMTraverser {
 
 const $ = new DOMTraverser({
   rootNode: document.getElementsByTagName("body"),
-  animationModule() {} // Most of the time, we won't need to animate when traversing.
+  animationModule() {} // Більшу частину часу ми не потребуємо анімації під час обходу DOM.
   // ...
 });
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 class DOMTraverser {
@@ -1604,32 +1579,20 @@ const $ = new DOMTraverser({
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Dependency Inversion Principle (DIP)
+### Принцип інверсії залежностей (DIP)
 
-This principle states two essential things:
+Цей принцип визначає дві важливі речі:
 
-1. High-level modules should not depend on low-level modules. Both should
-   depend on abstractions.
-2. Abstractions should not depend upon details. Details should depend on
-   abstractions.
+1. Модулі високого рівня не повинні залежати від модулів низького рівня. І ті й інші повинні залежати від абстракцій.
+2. Абстракції не повинні залежати від деталей. Деталі повинні залежати від абстракцій.
 
-This can be hard to understand at first, but if you've worked with AngularJS,
-you've seen an implementation of this principle in the form of Dependency
-Injection (DI). While they are not identical concepts, DIP keeps high-level
-modules from knowing the details of its low-level modules and setting them up.
-It can accomplish this through DI. A huge benefit of this is that it reduces
-the coupling between modules. Coupling is a very bad development pattern because
-it makes your code hard to refactor.
+Спочатку це може бути важко зрозуміти, але якщо ви працювали з AngularJS, ви бачили реалізацію цього принципу у формі впровадження залежностей (DI). Хоча вони не є ідентичними поняттями, DIP утримує модулі високого рівня від знання деталей модулів низького рівня та їх налаштування. Цього можна досягти за допомогою DI. Величезна перевага впровадження залежностей полягає в тому, що воно зменшує зв'язування між модулями. Зв'язування - це дуже поганий паттерн розробки, оскільки це робить ваш код важким для рефакторингу.
 
-As stated previously, JavaScript doesn't have interfaces so the abstractions
-that are depended upon are implicit contracts. That is to say, the methods
-and properties that an object/class exposes to another object/class. In the
-example below, the implicit contract is that any Request module for an
-`InventoryTracker` will have a `requestItems` method.
+Як було сказано раніше, у JavaScript немає інтерфейсів, тому абстракції є неявними контрактами. Тобто методами та властивостями, які об'єкт/клас показує іншому об'єкту/класу. У наведеному нижче прикладі неявний контракт полягає в тому, що будь-який модуль запиту для `InventoryTracker` матиме метод `requestItems`.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 class InventoryRequester {
@@ -1646,8 +1609,8 @@ class InventoryTracker {
   constructor(items) {
     this.items = items;
 
-    // BAD: We have created a dependency on a specific request implementation.
-    // We should just have requestItems depend on a request method: `request`
+    // ПОГАНО: Ми створили залежність від реалізації конкретного запиту.
+    // Треба щоб requestItems залежав тільки від методу запиту: `request`
     this.requester = new InventoryRequester();
   }
 
@@ -1662,7 +1625,7 @@ const inventoryTracker = new InventoryTracker(["apples", "bananas"]);
 inventoryTracker.requestItems();
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 class InventoryTracker {
@@ -1698,8 +1661,8 @@ class InventoryRequesterV2 {
   }
 }
 
-// By constructing our dependencies externally and injecting them, we can easily
-// substitute our request module for a fancy new one that uses WebSockets.
+// Побудувавши залежності зовні та впровадивши їх, ми можемо легко
+// замінити наш модуль запиту на новий та модний, що використовує вебсокети.
 const inventoryTracker = new InventoryTracker(
   ["apples", "bananas"],
   new InventoryRequesterV2()
@@ -1707,9 +1670,9 @@ const inventoryTracker = new InventoryTracker(
 inventoryTracker.requestItems();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-## **Testing**
+## **Тестування**
 
 Testing is more important than shipping. If you have no tests or an
 inadequate amount, then every time you ship code you won't be sure that you
