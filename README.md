@@ -10,7 +10,7 @@
 6. [SOLID](#SOLID)
 7. [Тестування](#Тестування)
 8. [Асинхронність](#Асинхронність)
-9. [Обробка помилок](#error-handling)
+9. [Обробка помилок](#Обробка-помилок)
 10. [Форматування](#formatting)
 11. [Коментарі](#comments)
 12. [Переклад](#translation)
@@ -1734,12 +1734,12 @@ describe("MomentJS", () => {
 
 ## **Асинхронність**
 
-### Use Promises, not callbacks
+### Використовуйте проміси замість колбеків
 
-Callbacks aren't clean, and they cause excessive amounts of nesting. With ES2015/ES6,
-Promises are a built-in global type. Use them!
+Колбеки не є чистими, і вони викликають надмірну кількість вкладеності. З ES2015 / ES6,
+проміси - це вбудований глобальний тип. Використовуйте їх!
 
-**Bad:**
+**Погано:**
 
 ```javascript
 import { get } from "request";
@@ -1763,7 +1763,7 @@ get(
 );
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 import { get } from "request-promise";
@@ -1781,17 +1781,13 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
   });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Async/Await are even cleaner than Promises
+### Async/Await ще чистіший за проміси
 
-Promises are a very clean alternative to callbacks, but ES2017/ES8 brings async and await
-which offer an even cleaner solution. All you need is a function that is prefixed
-in an `async` keyword, and then you can write your logic imperatively without
-a `then` chain of functions. Use this if you can take advantage of ES2017/ES8 features
-today!
+Проміси є дуже чистою альтернативою колбекам, але ES2017 / ES8 приносить async та await, які пропонують ще більш чисте рішення. Все, що вам потрібно, - це функція, яка має в префіксі ключове слово `async`, і тоді ви можете імперативно писати логіку без прив'язки функцій до `then`.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 import { get } from "request-promise";
@@ -1809,7 +1805,7 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
   });
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 import { get } from "request-promise";
@@ -1830,9 +1826,9 @@ async function getCleanCodeArticle() {
 getCleanCodeArticle()
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-## **Error Handling**
+## **Обробка помилок**
 
 Thrown errors are a good thing! They mean the runtime has successfully
 identified when something in your program has gone wrong and it's letting
