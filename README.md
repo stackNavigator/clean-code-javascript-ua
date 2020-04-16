@@ -9,7 +9,7 @@
 5. [Класи](#Класи)
 6. [SOLID](#SOLID)
 7. [Тестування](#Тестування)
-8. [Асинхронність](#concurrency)
+8. [Асинхронність](#Асинхронність)
 9. [Обробка помилок](#error-handling)
 10. [Форматування](#formatting)
 11. [Коментарі](#comments)
@@ -1674,24 +1674,13 @@ inventoryTracker.requestItems();
 
 ## **Тестування**
 
-Testing is more important than shipping. If you have no tests or an
-inadequate amount, then every time you ship code you won't be sure that you
-didn't break anything. Deciding on what constitutes an adequate amount is up
-to your team, but having 100% coverage (all statements and branches) is how
-you achieve very high confidence and developer peace of mind. This means that
-in addition to having a great testing framework, you also need to use a
-[good coverage tool](https://gotwarlost.github.io/istanbul/).
+Тестування важливіше, ніж доставка коду. Якщо у вас немає тестів або їх кількість недостатня, то кожного разу, надсилаючи код, ви не будете впевнені, що нічого не зламали. Питання про те, що становить адекватну кількість тестів, вирішується вашою командою, але 100% покриття (усі вирази та гілки) - це те, як ви досягаєте дуже високої впевненості та спокою як розробник. Це означає, що окрім чудового фреймворку тестування, вам також потрібно використовувати [гарний інструмент покриття](https://gotwarlost.github.io/istanbul/).
 
-There's no excuse to not write tests. There are [plenty of good JS test frameworks](https://jstherightway.org/#testing-tools), so find one that your team prefers.
-When you find one that works for your team, then aim to always write tests
-for every new feature/module you introduce. If your preferred method is
-Test Driven Development (TDD), that is great, but the main point is to just
-make sure you are reaching your coverage goals before launching any feature,
-or refactoring an existing one.
+Немає приводу не писати тестів. Існує [безліч хороших JS фреймворків](https://jstherightway.org#testing-tools), тож знайдіть такий, якому віддає перевагу ваша команда. Коли ви знайдете такий, що підходить вашій команді, намагайтесь завжди писати тести для кожної нової функції/модуля, який ви вводите.Якщо вашим улюбленим методом є розробка через тестування (TDD), це чудово, але головне - просто переконайтеся, що ви досягаєте своїх планів з покриття тестами, перш ніж запускати будь-яку функцію або рефакторити існуючу.
 
-### Single concept per test
+### Одна концепція на один тест
 
-**Bad:**
+**Погано:**
 
 ```javascript
 import assert from "assert";
@@ -1715,7 +1704,7 @@ describe("MomentJS", () => {
 });
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 import assert from "assert";
@@ -1741,9 +1730,9 @@ describe("MomentJS", () => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-## **Concurrency**
+## **Асинхронність**
 
 ### Use Promises, not callbacks
 
