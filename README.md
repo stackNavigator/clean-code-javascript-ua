@@ -1892,9 +1892,9 @@ getdata()
     console.error(error);
     // Інший варіант:
     notifyUserOfError(error);
-    // AІнший варіант:
+    // Інший варіант:
     reportErrorToService(error);
-    // OАБО використовуйте всі три!
+    // АБО використовуйте всі три!
   });
 ```
 
