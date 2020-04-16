@@ -6,8 +6,8 @@
 2. [Змінні](#Змінні)
 3. [Функції](#Функції)
 4. [Об'єкти та структури даних](#Об'єкти-та-структури-даних)
-5. [Класи](#classes)
-6. [SOLID](#solid)
+5. [Класи](#Класи)
+6. [SOLID](#SOLID)
 7. [Тестування](#testing)
 8. [Асинхронність](#concurrency)
 9. [Обробка помилок](#error-handling)
@@ -773,7 +773,7 @@ if (isDOMNodePresent(node)) {
 
 ### Уникайте умовних виразів
 
-Це здається неможливим завданням. Більшість людей, почувши це, говорять: "як я можу зробити хоч щось без `if` виразу?" Відповідь полягає в тому, що ви можете використовувати поліморфізм для досягнення однієї і тієї ж мети у багатьох випадках. Друге питання, як правило, "ну це чудово, але чому я хотів би це зробити?" Відповідь - це попередня концепція чистого коду, яку ми дізналися: функція повинна виконувати лише одну дію. Коли у вас є класи та функції, у яких наявні `if` вирази, ви говорите вашому користувачеві, що ваша функція виконує більше однієї дії. Пам'ятайте, виконуйте тільки одну дію.
+Це здається неможливим завданням. Більшість людей, почувши це, говорять: "як я можу зробити хоч щось без `if` виразу?" Відповідь полягає в тому, що ви можете використовувати поліморфізм для досягнення однієї і тієї ж мети у багатьох випадках. Друге питання, як правило: "ну це чудово, але чому я хотів би це зробити?" Відповідь - це попередня концепція чистого коду, яку ми дізналися: функція повинна виконувати лише одну дію. Коли у вас є класи та функції, у яких наявні `if` вирази, ви говорите вашому користувачеві, що ваша функція виконує більше однієї дії. Пам'ятайте, виконуйте тільки одну дію.
 
 **Погано:**
 
@@ -938,21 +938,17 @@ inventoryTracker("apples", req, "www.inventory-awesome.io");
 
 ## **Об'єкти та структури даних**
 
-### Use getters and setters
+### Використовутйе геттери та сеттери
 
-Using getters and setters to access data on objects could be better than simply
-looking for a property on an object. "Why?" you might ask. Well, here's an
-unorganized list of reasons why:
+Використання геттерів та сеттерів для доступу до даних об'єктів може бути кращим за просте отримання властивості об'єкта. "Чому?" - ви можете запитати. Ось перелік причин:
 
-- When you want to do more beyond getting an object property, you don't have
-  to look up and change every accessor in your codebase.
-- Makes adding validation simple when doing a `set`.
-- Encapsulates the internal representation.
-- Easy to add logging and error handling when getting and setting.
-- You can lazy load your object's properties, let's say getting it from a
-  server.
+- Коли ви хочете зробити більше, ніж отримати властивість об’єкта, вам не потрібно шукати та змінювати кожне місце доступу до властивості об'єкта.
+- Робить валідацію простою при роботі з `set`.
+- Інкапсулює внутрішнє представлення.
+- Легко додавати логінг та обробку помилок під час отримання та встановлення властивостей.
+- Ви можете ліниво завантажити властивості об'єкта, скажімо, отримуючи їх з сервера.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 function makeBankAccount() {
@@ -968,21 +964,21 @@ const account = makeBankAccount();
 account.balance = 100;
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 function makeBankAccount() {
-  // this one is private
+  // ця властивість приватна
   let balance = 0;
 
-  // a "getter", made public via the returned object below
+  // "геттер", є публічним через повернутий об’єкт нижче
   function getBalance() {
     return balance;
   }
 
-  // a "setter", made public via the returned object below
+  // "сеттер", є публічним через повернутий об’єкт нижче
   function setBalance(amount) {
-    // ... validate before updating the balance
+    // ... валідація перед оновленням балансу
     balance = amount;
   }
 
@@ -997,13 +993,13 @@ const account = makeBankAccount();
 account.setBalance(100);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Make objects have private members
+### Створюйте приватні поля в об'єктах
 
-This can be accomplished through closures (for ES5 and below).
+Цього можна досягти за допомогою замикань (для ES5 і нижче).
 
-**Bad:**
+**Погано:**
 
 ```javascript
 const Employee = function(name) {
@@ -1020,7 +1016,7 @@ delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: undefined
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 function makeEmployee(name) {
@@ -1037,18 +1033,15 @@ delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-## **Classes**
+## **Класи**
 
-### Prefer ES2015/ES6 classes over ES5 plain functions
+### Віддавайте перевагу ES2015 / ES6 класам над звичайними ES5 функціями
 
-It's very difficult to get readable class inheritance, construction, and method
-definitions for classical ES5 classes. If you need inheritance (and be aware
-that you might not), then prefer ES2015/ES6 classes. However, prefer small functions over
-classes until you find yourself needing larger and more complex objects.
+Дуже важко отримати читабельне наслідування класів, їх побудову та визначення методів у класичних ES5 класах. Якщо вам потрібне наслідування (майте на увазі, що це може бути не так), тоді віддайте перевагу ES2015 / ES6 класам. Однак віддавайте перевагу невеликим функціям над класами, доки вам не знадобляться більш великиі і складні об'єкти.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 const Animal = function(age) {
@@ -1088,7 +1081,7 @@ Human.prototype.constructor = Human;
 Human.prototype.speak = function speak() {};
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 class Animal {
@@ -1124,17 +1117,13 @@ class Human extends Mammal {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Use method chaining
+### Використовуйте прив'язку методів (method chaining)
 
-This pattern is very useful in JavaScript and you see it in many libraries such
-as jQuery and Lodash. It allows your code to be expressive, and less verbose.
-For that reason, I say, use method chaining and take a look at how clean your code
-will be. In your class functions, simply return `this` at the end of every function,
-and you can chain further class methods onto it.
+Цей паттерн дуже корисний у JavaScript, і ви спостерігаєте його у багатьох бібліотеках, таких як jQuery і Lodash. Прив'язка методів дозволяє вашому коду бути виразним і менш багатослівним. Спробуйте використати прив'язку методів і погляньте, наскільки чистим буде ваш код. У функціях класу просто поверніть `this` в кінці кожної функції, і ви можете прив'язувати до нього подальші методи класу.
 
-**Bad:**
+**Погано:**
 
 ```javascript
 class Car {
@@ -1166,7 +1155,7 @@ car.setColor("pink");
 car.save();
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 class Car {
@@ -1178,25 +1167,25 @@ class Car {
 
   setMake(make) {
     this.make = make;
-    // NOTE: Returning this for chaining
+    // ПРИМІТКА: Повертаємо this для прив'язування
     return this;
   }
 
   setModel(model) {
     this.model = model;
-    // NOTE: Returning this for chaining
+    // ПРИМІТКА: Повертаємо this для прив'язування
     return this;
   }
 
   setColor(color) {
     this.color = color;
-    // NOTE: Returning this for chaining
+    // ПРИМІТКА: Повертаємо this для прив'язування
     return this;
   }
 
   save() {
     console.log(this.make, this.model, this.color);
-    // NOTE: Returning this for chaining
+    // ПРИМІТКА: Повертаємо this для прив'язування
     return this;
   }
 }
@@ -1204,28 +1193,19 @@ class Car {
 const car = new Car("Ford", "F-150", "red").setColor("pink").save();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
-### Prefer composition over inheritance
+### Віддавайте перевагу композиції над наслідуванням
 
-As stated famously in [_Design Patterns_](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
-you should prefer composition over inheritance where you can. There are lots of
-good reasons to use inheritance and lots of good reasons to use composition.
-The main point for this maxim is that if your mind instinctively goes for
-inheritance, try to think if composition could model your problem better. In some
-cases it can.
+Як відомо зазначено в книзі [_Design Patterns_](https://en.wikipedia.org/wiki/Design_Patterns) Бандою Чотирьох, вам слід віддати перевагу композиції над наслідуванням, де це можливо. Є багато вагомих причин використовувати наслідування і є безліч вагомих причин використовувати композицію. Основним моментом цієї максими є те, що якщо ваш розум інстинктивно дотримується наслідування, спробуйте подумати, чи композиція могла б краще моделювати вашу проблему. У деяких випадках вона могла б.
 
-You might be wondering then, "when should I use inheritance?" It
-depends on your problem at hand, but this is a decent list of when inheritance
-makes more sense than composition:
+Тоді вам може бути цікаво: "коли я повинен використовувати наслідування?" Це залежить від вашої поточної проблеми, але це пристойний перелік ситуацій, коли наслідування має більше сенсу, ніж композиція:
 
-1. Your inheritance represents an "is-a" relationship and not a "has-a"
-   relationship (Human->Animal vs. User->UserDetails).
-2. You can reuse code from the base classes (Humans can move like all animals).
-3. You want to make global changes to derived classes by changing a base class.
-   (Change the caloric expenditure of all animals when they move).
+1. Ваше наслідування представляє відносини типу "є чимось", а не "має щось" (Людина->Тварина проти Користувач->ДеталіКористувача).
+2. Ви можете повторно використовувати код з базових класів (Люди можуть рухатися, як і всі тварини).
+3. Ви хочете внести глобальні зміни до похідних класів, змінивши базовий клас. (Зміна витрати калорій всіх тварин, коли вони рухаються).
 
-**Bad:**
+**Погано:**
 
 ```javascript
 class Employee {
@@ -1237,7 +1217,7 @@ class Employee {
   // ...
 }
 
-// Bad because Employees "have" tax data. EmployeeTaxData is not a type of Employee
+// Погано, тому що Співробітники "мають" податкові дані. EmployeeTaxData не є типом Employee
 class EmployeeTaxData extends Employee {
   constructor(ssn, salary) {
     super();
@@ -1249,7 +1229,7 @@ class EmployeeTaxData extends Employee {
 }
 ```
 
-**Good:**
+**Добре:**
 
 ```javascript
 class EmployeeTaxData {
@@ -1274,11 +1254,11 @@ class Employee {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ повернутися до змісту](#Зміст)**
 
 ## **SOLID**
 
-### Single Responsibility Principle (SRP)
+### Принцип єдиної відповідальності (SRP)
 
 As stated in Clean Code, "There should never be more than one reason for a class
 to change". It's tempting to jam-pack a class with a lot of functionality, like
